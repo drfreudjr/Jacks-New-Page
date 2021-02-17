@@ -1,10 +1,3 @@
-/* Javascript Shell */
-// 'use strict';
-let cl = console.log;
+import {  fontList } from './modules/fontList.js';
 
-document.write("Javascript Active: " + Date());
-
-$(document).ready(function(){
-    $('div').html('jQuery online')
-
-}); 
+console.log (fontList)
