@@ -7,8 +7,7 @@ const global = {
     nameLetters : []
 }
 
-for (let i= 0; i < global.name.length; i++) {
+for (let i= 0; i < global.name.length; i++) 
     global.nameLetters[i] = {'letter': global.name[i]}
-}
 
 cl(global.nameLetters[0].letter)
