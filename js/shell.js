@@ -8,12 +8,12 @@ const global = {
 
 main()
 function main() {
-    makeEachLetterAnObjectAndPutItIntoAnArray ()
+    makeEachLetterAnObject ()
 }
 
-function makeEachLetterAnObjectAndPutItIntoAnArray  () {
+function makeEachLetterAnObject () {
     for (let i= 0; i < global.name.length; i++) 
         global.eachLetter[i] = {'letter': global.name[i]}
 }
 
-cl(global.eachLetter[0].letter)
+cl(global.eachLetter[1].letter)
