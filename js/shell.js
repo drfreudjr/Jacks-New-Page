@@ -1,5 +1,4 @@
 const cl = console.log
-
 import { fontList } from './modules/fontList.js';
 
 const global = {
