@@ -4,10 +4,18 @@ import { fontList } from './modules/fontList.js';
 
 const global = {
     name : 'Jack Wilcox',
-    nameLetters : []
+    eachNameLetter : []
 }
 
-for (let i= 0; i < global.name.length; i++) 
-    global.nameLetters[i] = {'letter': global.name[i]}
+main()
+function main() {
+    makeObjectArrayForEachLetter ()
+}
 
-cl(global.nameLetters[0].letter)
+function makeObjectArrayForEachLetter () {
+    for (let i= 0; i < global.name.length; i++) 
+        global.eachNameLetter[i] = {'letter': global.name[i]}
+}
+
+
+cl(global.eachNameLetter[0].letter)
