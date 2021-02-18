@@ -19,13 +19,13 @@ function makeEachLetterAnObject() {
         global.eachLetter[i] = {'letter': global.name[i]} 
 }
 
-getRandomCharacterString()
+getRandomCharacterString(global.name.length)
 
-function getRandomCharacterString () {
+function getRandomCharacterString (length) {
     let possibleLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     let randomString = ''
     let randomCharacter = null
-    for (let i = 0; i < global.name.length; i++) 
+    for (let i = 0; i < length; i++) 
         randomString += possibleLetters[Math.floor(Math.random()*62)]
     return(randomString)
 }
