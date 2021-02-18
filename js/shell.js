@@ -1,6 +1,7 @@
 const cl = console.log
 import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
+// import { getRandomCharacterString } from './modules/getRandomCharacterString.js'
 
 const global = {
     name : 'Jack Wilcox',
