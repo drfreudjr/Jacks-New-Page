@@ -30,4 +30,4 @@ function getRandomCharacterString (length) {
     return(randomString)
 }
 cl(global.eachLetter[1])
-cl(getRandomCharacterString())
+cl(getRandomCharacterString(8))
