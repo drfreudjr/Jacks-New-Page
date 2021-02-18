@@ -29,5 +29,7 @@ function getRandomCharacterString () {
         randomCharacter = possibleLetters[Math.floor(Math.random()*62)]
         randomString += (randomCharacter)
     }
+    return(randomString)
 }
-
+cl(global.eachLetter[1])
+cl(getRandomCharacterString())
