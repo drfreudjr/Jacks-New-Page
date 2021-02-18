@@ -1,7 +1,7 @@
 const cl = console.log
 import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
-import { getRandomCharacterString } from './modules/getRandomCharacterString.js' // arg = length
+import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
 const global = {
     name : 'Jack Wilcox',
@@ -20,7 +20,13 @@ function makeEachLetterAnObject() {
         global.eachLetter[i] = {'letter': global.name[i]} 
 }
 
-getRandomCharacterString(global.name.length)
+function printNameAnimation() {
+
+    let nameEl = document.createElement('')
+
+}
+
+randomCharacterString(global.name.length)
 
 cl(global.eachLetter[1])
-cl(getRandomCharacterString(8))
+cl(randomCharacterString(8))

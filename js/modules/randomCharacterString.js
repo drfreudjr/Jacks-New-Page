@@ -1,4 +1,4 @@
-export function getRandomCharacterString (length) {
+export function randomCharacterString (length) {
     let possibleLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     let randomString = ''
     let randomCharacter = null
