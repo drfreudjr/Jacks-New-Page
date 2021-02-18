@@ -25,9 +25,8 @@ function getRandomCharacterString () {
     let possibleLetters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
     let randomString = ''
     let randomCharacter = null
-    for (let i = 0; i < global.name.length; i++) {
+    for (let i = 0; i < global.name.length; i++) 
         randomString += possibleLetters[Math.floor(Math.random()*62)]
-    }
     return(randomString)
 }
 cl(global.eachLetter[1])
