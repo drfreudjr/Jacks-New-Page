@@ -22,15 +22,20 @@ function makeEachLetterAnObject() {
 
 function printNameAnimation() {
 
+    function upDateAnimation () {
+        let x = randomCharacterString(global.name.length)
+        nameEl.innerText = x
+    }
+
     var element = document.getElementById("name")
     var newTextNode = document.createTextNode('')
     var nameEl = document.createElement('div')
     element.appendChild(nameEl)
 
-    let x = randomCharacterString(global.name.length)
+    let count = 0
+    while (count < 100) {
+        upDateAnimation()
+    }
 
-    nameEl.innerText = x
-
-
-
+    cl(count)
 }
