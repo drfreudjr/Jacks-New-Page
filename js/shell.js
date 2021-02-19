@@ -39,3 +39,5 @@ function printNameAnimation() {
 
     cl(count)
 }
+
+// try creating and destroying the object each time
