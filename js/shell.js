@@ -21,15 +21,16 @@ function makeEachLetterAnObject() {
 }
 
 function printNameAnimation() {
-    var nameEl = document.createElement('p')
 
+    var element = document.getElementById("name")
+    var newTextNode = document.createTextNode('')
+    var nameEl = document.createElement('div')
+    element.appendChild(nameEl)
 
     let x = randomCharacterString(global.name.length)
 
-    var newTextNode = document.createTextNode(x)
-    nameEl.appendChild(newTextNode)
+    nameEl.innerText = x
 
-    var element = document.getElementById("name")
-    element.appendChild(nameEl)
+
 
 }
