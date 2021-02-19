@@ -26,12 +26,10 @@ function printNameAnimation() {
 
     let x = randomCharacterString(global.name.length)
 
-    var newText = document.createTextNode(x)
-    nameEl.appendChild(newText)
+    var newTextNode = document.createTextNode(x)
+    nameEl.appendChild(newTextNode)
 
     var element = document.getElementById("name")
     element.appendChild(nameEl)
 
 }
-
-
