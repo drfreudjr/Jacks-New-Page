@@ -32,10 +32,8 @@ function printNameAnimation() {
     var nameEl = document.createElement('div')
     element.appendChild(nameEl)
 
-    let count = 0
-    while (count < 100) {
-        upDateAnimation()
-    }
+
+    window.requestAnimationFrame(upDateAnimation)
 
     cl(count)
 }
