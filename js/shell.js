@@ -12,7 +12,7 @@ const global = {
 main()
 function main() {
     makeEachLetterAnObject()
-    // printNameAnimation()
+    printNameAnimation()
 }
 
 function makeEachLetterAnObject() {
@@ -21,12 +21,17 @@ function makeEachLetterAnObject() {
 }
 
 function printNameAnimation() {
+    var nameEl = document.createElement('p')
 
-    let nameEl = document.createElement('')
+
+    let x = randomCharacterString(global.name.length)
+
+    var newText = document.createTextNode(x)
+    nameEl.appendChild(newText)
+
+    var element = document.getElementById("name")
+    element.appendChild(nameEl)
 
 }
 
-randomCharacterString(global.name.length)
 
-cl(global.eachLetter[1])
-cl(randomCharacterString(8))

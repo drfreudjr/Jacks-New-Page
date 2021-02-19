@@ -1,0 +1,10 @@
+/* Shell CSS file */
+
+@media all {
+    body 	{background-color: yellow;}
+}
+
+#name {
+    font-size: 200%;
+    letter-spacing: 0.5em;
+}
