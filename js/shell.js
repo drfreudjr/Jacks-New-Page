@@ -22,20 +22,27 @@ function makeEachLetterAnObject() {
 
 function printNameAnimation() {
 
-    function upDateAnimation () {
-        let x = randomCharacterString(global.name.length)
-        nameEl.innerText = x
-    }
+        var element = document.getElementById("name")
+        var newTextNode = document.createTextNode('')
+        var nameEl = document.createElement('span')
+        element.appendChild(nameEl)
 
-    var element = document.getElementById("name")
-    var newTextNode = document.createTextNode('')
-    var nameEl = document.createElement('div')
-    element.appendChild(nameEl)
+        upDateAnimation(0)
+
+        let iteration = 0
+
+    function upDateAnimation (iteration) {
+
+        if (iteration < global.name.length) {
+            let x = randomCharacterString(1)
+            nameEl.innerText = x 
+            // window.requestAnimationFrame(upDateAnimation)
+            setTimeout(printNameAnimation, 10, ++iteration) 
+            ++iteration
+            cl(iteration)
+            }      
+        }
 
 
-    window.requestAnimationFrame(upDateAnimation)
-
-    cl(count)
 }
 
-// try creating and destroying the object each time
