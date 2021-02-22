@@ -54,23 +54,33 @@ for (let i = 0; i < initialWord.length; ++i) {  // seed it
 drawLetter()
 
 function drawLetter () { // just work on the first letter
-    drawBackground()
-    function drawBackground () {    // randomBackgroundColor or White
-        let x = Math.floor(Math.random()*2)
+    drawLetter()
+    function drawLetter () {    
+        let x = Math.floor(Math.random()*2) // randomBackgroundColor or White
         if (x == 0) {
-            context.fillStyle = 'white'
+            context.fillStyle = '#ffffff'
         }
         else {
-            context.fillStyle = 'grey'
+            context.fillStyle = '#808080'
         }
-        cl(context.fillStyle)
         context.fillRect(startingSpotX, startingSpotY, startingSpotX + boxSize, startingSpotY + boxSize)
+
+        cl(context.fillStyle)
+
+        if (context.fillStyle == '#ffffff') {    // whatever the background switch the other to foreground
+            context.fillStyle = '#808080'
+        }
+        else
+            context.fillStyle = '#ffffff'
+        
+        cl(context.fillStyle)
+
     }
+
 }
 
 
 
-cl(currentWordArray)
 
 
 
