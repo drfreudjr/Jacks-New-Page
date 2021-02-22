@@ -71,19 +71,16 @@ function drawLetters () { // just work on the first letter
         context.font = fontText
 
 
-        
-
         let randomLetter = randomCharacterString(1)
-
         let metrics = context.measureText(randomLetter);
-
         let textWidth = metrics.width
-
         let centerOfBox = startingSpotX + (.5*boxSize)
-
         let xPosition = centerOfBox - (.5*textWidth)
 
-        context.fillText (randomLetter,xPosition,  + boxSize)
+        let yPosition = boxSize + (.3*boxSize) // hacky approximation
+        context.fillText (randomLetter,xPosition, yPosition)
+
+        window.requestAnimationFrame(drawLetter)
     }
 
 }
