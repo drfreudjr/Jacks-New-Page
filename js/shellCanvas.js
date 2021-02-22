@@ -40,11 +40,35 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 const initialWord = 'Jack Wilcox'
 
+
+
 let currentWordArray = []   // the working random string
+let boxSize = 10   //
+let startingSpotX = 50
+let startingSpotY = 50
 
 for (let i = 0; i < initialWord.length; ++i) {  // seed it
     currentWordArray[i] = randomCharacterString(1)
 }
+
+drawLetter()
+
+function drawLetter () { // just work on the first letter
+    drawBackground()
+    function drawBackground () {    // randomBackgroundColor or White
+        let x = Math.floor(Math.random()*2)
+        if (x == 0) {
+            context.fillStyle = 'white'
+        }
+        else {
+            context.fillStyle = 'grey'
+        }
+        cl(context.fillStyle)
+        context.fillRect(startingSpotX, startingSpotY, startingSpotX + boxSize, startingSpotY + boxSize)
+    }
+}
+
+
 
 cl(currentWordArray)
 
