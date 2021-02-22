@@ -44,7 +44,9 @@ const initialWord = 'Jack Wilcox'
 
 
 let currentWordArray = []   // the working random string
-let boxSize = 10   //
+let boxSize = 100   //
+let letterToBoxRatio = .8
+let letterSize = letterToBoxRatio*boxSize
 let startingSpotX = 50
 let startingSpotY = 50
 
@@ -54,20 +56,24 @@ for (let i = 0; i < initialWord.length; ++i) {  // seed it
 
 drawLetters()
 function drawLetters () { // just work on the first letter
-    drawLetter()
 
+    drawLetter()
     function drawLetter () {    
         const lightColor = '#ffffff'
         const darkColor = '#808080'
 
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
-        context.fillRect(startingSpotX, startingSpotY, startingSpotX + boxSize, startingSpotY + boxSize)
+        context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
+
         cl(context.fillStyle)
 
         context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
         cl(context.fillStyle)
-        // set font size as percent of box size
-        // draw it in color already set
+
+        let fontText = `${letterSize}px serif`
+        context.font = fontText
+        cl(context.font, context.fillStyle)
+        context.fillText ('a',startingSpotX*letterToBoxRatio, startingSpotY*letterToBoxRatio)
     }
 
 }
