@@ -45,7 +45,7 @@ const initialWord = 'Jack Wilcox'
 
 let currentWordArray = []   // the working random string
 let boxSize = 100   //
-let letterToBoxRatio = .8
+let letterToBoxRatio = .9
 let letterSize = letterToBoxRatio*boxSize
 let startingSpotX = 50
 let startingSpotY = 50
@@ -65,15 +65,22 @@ function drawLetters () { // just work on the first letter
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
         context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
 
-        cl(context.fillStyle)
-
         context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
-        cl(context.fillStyle)
 
         let fontText = `${letterSize}px serif`
         context.font = fontText
-        cl(context.font, context.fillStyle)
-        context.fillText ('a',startingSpotX*letterToBoxRatio, startingSpotY*letterToBoxRatio)
+
+        let randomLetter = randomCharacterString(1)
+
+        let metrics = context.measureText(randomLetter);
+        cl(metrics)
+        let textWidth = metrics.width
+        cl(textWidth)
+        let centerOfBox = startingSpotX + (.5*boxSize)
+        cl (startingSpotX, centerOfBox)
+        let final = centerOfBox - (.5*textWidth)
+
+        context.fillText (randomLetter,final,  + boxSize)
     }
 
 }
@@ -85,23 +92,6 @@ function drawLetters () { // just work on the first letter
 
 
 
-// testCanvas()
-// function testCanvas() {
-//     context.fillStyle = "#ff0000"
-//     context.fillRect (60,60,100,100)
-// }
-
-// testAddObect()
-// function testAddObect() {
-
-//         var element = document.getElementById("name")
-//         var newTextNode = document.createTextNode('')
-//         var nameEl = document.createElement('span')
-//         element.appendChild(nameEl)
-
-//         let x = randomCharacterString(10)
-//         nameEl.innerText = (`Object created by appendChild: ${x}`)
-// }
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
