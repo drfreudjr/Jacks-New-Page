@@ -74,7 +74,8 @@ function drawLetter () { // just work on the first letter
             context.fillStyle = '#ffffff'
         
         cl(context.fillStyle)
-
+        // set font size as percent of box size
+        // draw it in color already set
     }
 
 }
