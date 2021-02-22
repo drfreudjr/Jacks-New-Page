@@ -38,38 +38,37 @@ function drawScreen() {  // wrapper that gets called on resize event
 
      //  // Enter Page Specific Code here
 
+const initialWord = 'Jack Wilcox'
 
-const global = {
-    name : 'Jack Wilcox',
-    fontSize : 14,
-    eachLetter : [{}], // create array of objects for each letter
+let currentWordArray = []   // the working random string
+
+for (let i = 0; i < initialWord.length; ++i) {  // seed it
+    currentWordArray[i] = randomCharacterString(1)
 }
 
-printNameAnimation()
-
-function printNameAnimation() {
-
-        var element = document.getElementById("name")
-        var newTextNode = document.createTextNode('')
-        var nameEl = document.createElement('span')
-        element.appendChild(nameEl)
-
-    let initialDelay = 10
-    function upDateAnimation () {
-
-        let x = randomCharacterString(global.name.length)
-        nameEl.innerText = x
-        window.requestAnimationFrame(upDateAnimation)
-        // setTimeout(printNameAnimation, 10)       
-    }
-
-    window.requestAnimationFrame(upDateAnimation)
-}
+cl(currentWordArray)
 
 
 
 
 
+// testCanvas()
+// function testCanvas() {
+//     context.fillStyle = "#ff0000"
+//     context.fillRect (60,60,100,100)
+// }
+
+// testAddObect()
+// function testAddObect() {
+
+//         var element = document.getElementById("name")
+//         var newTextNode = document.createTextNode('')
+//         var nameEl = document.createElement('span')
+//         element.appendChild(nameEl)
+
+//         let x = randomCharacterString(10)
+//         nameEl.innerText = (`Object created by appendChild: ${x}`)
+// }
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
