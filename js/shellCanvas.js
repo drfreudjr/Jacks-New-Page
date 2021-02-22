@@ -55,21 +55,16 @@ for (let i = 0; i < initialWord.length; ++i) {  // seed it
 drawLetters()
 function drawLetters () { // just work on the first letter
     drawLetter()
-    function drawLetter () {    
-        if (Math.floor(Math.random()*2) == 0) 
-            context.fillStyle = '#ffffff'
-        else 
-            context.fillStyle = '#808080'
-        context.fillRect(startingSpotX, startingSpotY, startingSpotX + boxSize, startingSpotY + boxSize)
 
+    function drawLetter () {    
+        const lightColor = '#ffffff'
+        const darkColor = '#808080'
+
+        context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
+        context.fillRect(startingSpotX, startingSpotY, startingSpotX + boxSize, startingSpotY + boxSize)
         cl(context.fillStyle)
 
-        if (context.fillStyle == '#ffffff') {    // whatever the background switch the other to foreground
-            context.fillStyle = '#808080'
-        }
-        else
-            context.fillStyle = '#ffffff'
-        
+        context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
         cl(context.fillStyle)
         // set font size as percent of box size
         // draw it in color already set
