@@ -58,7 +58,11 @@ drawLetters()
 function drawLetters () { // just work on the first letter
 
     drawLetter()
+
+    var fps = 2
+
     function drawLetter () {    
+
         const lightColor = '#ffffff'
         const darkColor = '#808080'
 
@@ -80,7 +84,12 @@ function drawLetters () { // just work on the first letter
         let yPosition = boxSize + (.3*boxSize) // hacky approximation
         context.fillText (randomLetter,xPosition, yPosition)
 
-        window.requestAnimationFrame(drawLetter)
+        setTimeout(function() {
+            requestAnimationFrame(drawLetter)
+        }, 1000 / fps)
+
+        // window.requestAnimationFrame(drawLetter)
+        // setTimeout(drawLetter,0)
     }
 
 }
