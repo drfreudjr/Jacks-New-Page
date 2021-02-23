@@ -57,12 +57,16 @@ for (let i = 0; i < initialWord.length; ++i) {  // seed it
 drawLetters()
 function drawLetters () { // just work on the first letter
 
+    let letterToDraw = (Math.floor(Math.random()*initialWord.length))
+    cl(initialWord.length,letterToDraw)
+
     drawLetter()
 
-    var fps = 2
+    var fps = 1
 
     function drawLetter () {    
 
+        fps+= .1
         const lightColor = '#ffffff'
         const darkColor = '#808080'
 
@@ -71,25 +75,23 @@ function drawLetters () { // just work on the first letter
 
         context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
 
-        let fontText = `${letterSize}px serif`
-        context.font = fontText
+        context.font = `${letterSize}px serif`
 
 
-        let randomLetter = randomCharacterString(1)
-        let metrics = context.measureText(randomLetter);
+        let randomContent = randomCharacterString(1)
+
+        let metrics = context.measureText(randomContent);
         let textWidth = metrics.width
         let centerOfBox = startingSpotX + (.5*boxSize)
         let xPosition = centerOfBox - (.5*textWidth)
 
         let yPosition = boxSize + (.3*boxSize) // hacky approximation
-        context.fillText (randomLetter,xPosition, yPosition)
+        context.fillText (randomContent,xPosition, yPosition)
 
         setTimeout(function() {
             requestAnimationFrame(drawLetter)
         }, 1000 / fps)
 
-        // window.requestAnimationFrame(drawLetter)
-        // setTimeout(drawLetter,0)
     }
 
 }
