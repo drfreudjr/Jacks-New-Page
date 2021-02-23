@@ -44,8 +44,8 @@ const initialWord = 'Jack Wilcox'
 let boxSize = 100   //
 let letterToBoxRatio = .9
 let letterSize = letterToBoxRatio*boxSize
-let startingSpotX = 0
-let startingSpotY = 0
+let startingArraySpotX = 0
+let startingArraySpotY = 0
 
 drawLetters()
 function drawLetters () { // just work on the first letter
@@ -63,6 +63,9 @@ function drawLetters () { // just work on the first letter
         fps += .1
         const lightColor = '#ffffff'
         const darkColor = '#808080'
+
+        let startingSpotX = startingArraySpotX*(spotToDraw+1) // need to compensate for multiplying by 0
+        let startingSpotY = startingArraySpotY*(spotToDraw+1)
 
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
         context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
