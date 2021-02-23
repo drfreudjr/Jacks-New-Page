@@ -55,7 +55,8 @@ function drawLetters () { // just work on the first letter
     function drawLetter () {    
         let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
 
-        fps += .5
+        fps += .8   // speeding up replacement rate
+
         const lightColor = '#ffffff'
         const darkColor = '#808080'
 
