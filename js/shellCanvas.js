@@ -17,8 +17,8 @@ addEventListener("resize", sizeCanvas); // resize canvas and redraw on window si
 function createCanvas () {   
     const canvas = document.createElement("canvas"); 
     canvas.style.position = "absolute"; 
-    canvas.style.left     = "200px";      
-    canvas.style.top      = "10px";
+    canvas.style.left     = "0px";      
+    canvas.style.top      = "0px";
 
     document.body.appendChild(canvas);  // Add to document
     return canvas;
@@ -47,8 +47,8 @@ let currentWordArray = []   // the working random string
 let boxSize = 100   //
 let letterToBoxRatio = .9
 let letterSize = letterToBoxRatio*boxSize
-let startingSpotX = 20
-let startingSpotY = 100
+let startingSpotX = 0
+let startingSpotY = 0
 
 for (let i = 0; i < initialWord.length; ++i) {  // seed it
     currentWordArray[i] = randomCharacterString(1)
@@ -57,15 +57,15 @@ for (let i = 0; i < initialWord.length; ++i) {  // seed it
 drawLetters()
 function drawLetters () { // just work on the first letter
 
-    let letterToDraw = (Math.floor(Math.random()*initialWord.length))
-    cl(initialWord.length,letterToDraw)
+    let spotToDraw = (Math.floor(Math.random()*initialWord.length))
+    cl(initialWord.length,spotToDraw)
 
-    let letterTodraw = 0    // testing
-    drawLetter(letterToDraw)
+    spotToDraw = 0    // testing
+    drawLetter(spotToDraw)
 
     var fps = 1
 
-    function drawLetter (letterToDraw) {    
+    function drawLetter (spotToDraw) {    
 
         fps += .1
         const lightColor = '#ffffff'
