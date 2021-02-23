@@ -38,7 +38,6 @@ function drawScreen() {  // wrapper that gets called on resize event
 
      //  // Enter Page Specific Code here
 
-
 const initialWord = 'Jack Wilcox'
 
 let boxSize = 100   //
@@ -50,22 +49,19 @@ let startingArraySpotY = 0
 drawLetters()
 function drawLetters () { // just work on the first letter
 
-    let spotToDraw = (Math.floor(Math.random()*initialWord.length))
-    cl(initialWord.length,spotToDraw)
-
-    spotToDraw = 0    // testing
-    drawLetter(spotToDraw)
-
     var fps = 1
 
-    function drawLetter (spotToDraw) {    
+    drawLetter()
+    function drawLetter () {    
+        let spotToDraw = (Math.floor(Math.random()*initialWord.length))
 
+        // spotToDraw = 0    // testing
         fps += .1
         const lightColor = '#ffffff'
         const darkColor = '#808080'
 
-        let startingSpotX = startingArraySpotX*(spotToDraw+1) // need to compensate for multiplying by 0
-        let startingSpotY = startingArraySpotY*(spotToDraw+1)
+        let startingSpotX = startingArraySpotX+((spotToDraw)*boxSize) // need to compensate for multiplying by 0
+        let startingSpotY = startingArraySpotY*((spotToDraw)*boxSize)
 
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
         context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
@@ -73,7 +69,6 @@ function drawLetters () { // just work on the first letter
         context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
 
         context.font = `${letterSize}px serif`
-
 
         let randomContent = randomCharacterString(1)
 
@@ -88,17 +83,8 @@ function drawLetters () { // just work on the first letter
         setTimeout(function() {
             requestAnimationFrame(drawLetter)
         }, 1000 / fps)
-
     }
-
 }
-
-
-
-
-
-
-
 
 
 }   // end drawScreen wrapper
