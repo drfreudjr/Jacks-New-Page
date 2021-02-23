@@ -17,8 +17,8 @@ addEventListener("resize", sizeCanvas); // resize canvas and redraw on window si
 function createCanvas () {   
     const canvas = document.createElement("canvas"); 
     canvas.style.position = "absolute"; 
-    canvas.style.left     = "0px";      
-    canvas.style.top      = "0px";
+    canvas.style.left     = "200px";      
+    canvas.style.top      = "10px";
 
     document.body.appendChild(canvas);  // Add to document
     return canvas;
@@ -47,8 +47,8 @@ let currentWordArray = []   // the working random string
 let boxSize = 100   //
 let letterToBoxRatio = .9
 let letterSize = letterToBoxRatio*boxSize
-let startingSpotX = 50
-let startingSpotY = 50
+let startingSpotX = 20
+let startingSpotY = 100
 
 for (let i = 0; i < initialWord.length; ++i) {  // seed it
     currentWordArray[i] = randomCharacterString(1)
@@ -60,13 +60,14 @@ function drawLetters () { // just work on the first letter
     let letterToDraw = (Math.floor(Math.random()*initialWord.length))
     cl(initialWord.length,letterToDraw)
 
-    drawLetter()
+    let letterTodraw = 0    // testing
+    drawLetter(letterToDraw)
 
     var fps = 1
 
-    function drawLetter () {    
+    function drawLetter (letterToDraw) {    
 
-        fps+= .1
+        fps += .1
         const lightColor = '#ffffff'
         const darkColor = '#808080'
 
@@ -85,7 +86,7 @@ function drawLetters () { // just work on the first letter
         let centerOfBox = startingSpotX + (.5*boxSize)
         let xPosition = centerOfBox - (.5*textWidth)
 
-        let yPosition = boxSize + (.3*boxSize) // hacky approximation
+        let yPosition = startingSpotY + (.77*boxSize) // hacky approximation
         context.fillText (randomContent,xPosition, yPosition)
 
         setTimeout(function() {
