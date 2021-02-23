@@ -41,18 +41,11 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 const initialWord = 'Jack Wilcox'
 
-
-
-let currentWordArray = []   // the working random string
 let boxSize = 100   //
 let letterToBoxRatio = .9
 let letterSize = letterToBoxRatio*boxSize
 let startingSpotX = 0
 let startingSpotY = 0
-
-for (let i = 0; i < initialWord.length; ++i) {  // seed it
-    currentWordArray[i] = randomCharacterString(1)
-}
 
 drawLetters()
 function drawLetters () { // just work on the first letter
