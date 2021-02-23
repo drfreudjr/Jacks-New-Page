@@ -40,7 +40,7 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 const initialWord = 'Jack Wilcox'
 
-let boxSize = 100   //
+let boxSize = 50   //
 let letterToBoxRatio = .9
 let letterSize = letterToBoxRatio*boxSize
 let startingArraySpotX = 0
@@ -49,19 +49,18 @@ let startingArraySpotY = 0
 drawLetters()
 function drawLetters () { // just work on the first letter
 
-    var fps = 1
+    var fps = 3
 
     drawLetter()
     function drawLetter () {    
-        let spotToDraw = (Math.floor(Math.random()*initialWord.length))
+        let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
 
-        // spotToDraw = 0    // testing
-        fps += .1
+        fps += .5
         const lightColor = '#ffffff'
         const darkColor = '#808080'
 
-        let startingSpotX = startingArraySpotX+((spotToDraw)*boxSize) // need to compensate for multiplying by 0
-        let startingSpotY = startingArraySpotY*((spotToDraw)*boxSize)
+        let startingSpotX = startingArraySpotX+((ordinalPosition)*boxSize) // need to compensate for multiplying by 0
+        let startingSpotY = startingArraySpotY*((ordinalPosition)*boxSize)
 
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
         context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
