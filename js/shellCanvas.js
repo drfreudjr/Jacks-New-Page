@@ -14,6 +14,7 @@ var context;
 sizeCanvas()                            // create initial canvas
 addEventListener("resize", sizeCanvas); // resize canvas and redraw on window size change
 
+
 function createCanvas () {   
     const canvas = document.createElement("canvas"); 
     canvas.style.position = "absolute"; 
@@ -49,10 +50,13 @@ let startingArraySpotY = 0
 drawLetters()
 function drawLetters () { // just work on the first letter
 
-    var fps = 3
+window.dispatchEvent(new Event('resize'));
+
+    var fps = 0
 
     drawLetter()
-    function drawLetter () {    
+    function drawLetter () {  
+    for (let i=0;i<3;++i)  {   // do many draws before painting
         let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
 
         fps += .8   // speeding up replacement rate
@@ -79,7 +83,7 @@ function drawLetters () { // just work on the first letter
 
         let yPosition = startingSpotY + (.77*boxSize) // hacky approximation
         context.fillText (randomContent,xPosition, yPosition)
-
+    }
         setTimeout(function() {
             requestAnimationFrame(drawLetter)
         }, 1000 / fps)
