@@ -53,39 +53,40 @@ function drawLetters () { // just work on the first letter
 window.dispatchEvent(new Event('resize'));
 
     var fps = 0
-
+    var cyclesPerFrame = 1
     drawLetter()
     function drawLetter () {  
-    for (let i=0;i<3;++i)  {   // do many draws before painting
-        let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
 
-        fps += .8   // speeding up replacement rate
+        for (let i=0;i<cyclesPerFrame;++i)  {   // do many draws before painting
+            let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
 
-        const lightColor = '#ffffff'
-        const darkColor = '#808080'
+            fps += .8   // speeding up replacement rate
 
-        let startingSpotX = startingArraySpotX+((ordinalPosition)*boxSize) // need to compensate for multiplying by 0
-        let startingSpotY = startingArraySpotY*((ordinalPosition)*boxSize)
+            const lightColor = '#ffffff'
+            const darkColor = '#808080'
 
-        context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
-        context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
+            let startingSpotX = startingArraySpotX+((ordinalPosition)*boxSize) // need to compensate for multiplying by 0
+            let startingSpotY = startingArraySpotY*((ordinalPosition)*boxSize)
 
-        context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
+            context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
+            context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
 
-        context.font = `${letterSize}px serif`
+            context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
 
-        let randomContent = randomCharacterString(1)
+            context.font = `${letterSize}px serif`
 
-        let metrics = context.measureText(randomContent);
-        let textWidth = metrics.width
-        let centerOfBox = startingSpotX + (.5*boxSize)
-        let xPosition = centerOfBox - (.5*textWidth)
+            let randomContent = randomCharacterString(1)
 
-        let yPosition = startingSpotY + (.77*boxSize) // hacky approximation
-        context.fillText (randomContent,xPosition, yPosition)
-    }
+            let metrics = context.measureText(randomContent);
+            let textWidth = metrics.width
+            let centerOfBox = startingSpotX + (.5*boxSize)
+            let xPosition = centerOfBox - (.5*textWidth)
+
+            let yPosition = startingSpotY + (.77*boxSize) // hacky approximation
+            context.fillText (randomContent,xPosition, yPosition)
+            }
         setTimeout(function() {
-            requestAnimationFrame(drawLetter)
+        requestAnimationFrame(drawLetter)
         }, 1000 / fps)
     }
 }
