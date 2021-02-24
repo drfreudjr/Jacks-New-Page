@@ -65,11 +65,11 @@ window.dispatchEvent(new Event('resize'));
 
             let positionToChange = (Math.floor(Math.random()*initialWord.length))
 
-            let startingSpotX = startingArraySpotX+((positionToChange)*boxSize) 
-            let startingSpotY = startingArraySpotY*((positionToChange)*boxSize)
+            let stringPlacementX = startingArraySpotX+((positionToChange)*boxSize) 
+            let stringPlacementY = startingArraySpotY*((positionToChange)*boxSize)
 
             context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
-            context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
+            context.fillRect(stringPlacementX, stringPlacementY, boxSize, boxSize)
 
             context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
 
@@ -79,10 +79,10 @@ window.dispatchEvent(new Event('resize'));
 
             let metrics = context.measureText(randomContent);
             let textWidth = metrics.width
-            let centerOfBox = startingSpotX + (.5*boxSize)
+            let centerOfBox = stringPlacementX + (.5*boxSize)
             let xPosition = centerOfBox - (.5*textWidth)
 
-            let yPosition = startingSpotY + (.77*boxSize) // hacky approximation
+            let yPosition = stringPlacementY + (.77*boxSize) // hacky approximation
             context.fillText (randomContent,xPosition, yPosition)
         }
         setTimeout(function() {
