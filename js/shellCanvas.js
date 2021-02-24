@@ -52,17 +52,17 @@ function drawLetters () { // just work on the first letter
 
 window.dispatchEvent(new Event('resize'));
 
-    var fps = 6 // starting fps
-    var fpsIncrementor = .2 //starting incrementor
+    var fps = 10 // starting fps
+    var fpsIncrementor = .3 //starting incrementor
     var cyclesPerFrame = 1
     const lightColor = '#ffffff'
     const darkColor = '#808080'
 
     drawLetter()
     function drawLetter () {  
-        fpsIncrementor +=.05    // increment the incrmentor for nonlinear increase
-        if (fps > 2000) ++ cyclesPerFrame
-        for (let i = 0; i < cyclesPerFrame; ++i)  {   // cycles before rendering
+        fpsIncrementor +=.08    // increment the incrmentor for nonlinear increase
+        if (fps > 3000) ++ cyclesPerFrame
+        for (let i = 0; i < cyclesPerFrame; ++i)  {   // cycles before rendering hyperspeed!
 
             fps += fpsIncrementor   // basic speeding up replacement speed
 
