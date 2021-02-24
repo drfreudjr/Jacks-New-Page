@@ -54,10 +54,11 @@ window.dispatchEvent(new Event('resize'));
 
     var fps = 0
     var cyclesPerFrame = 1
+
     drawLetter()
     function drawLetter () {  
 
-        for (let i = 0; i < cyclesPerFrame; ++i)  {   // do many draws before painting
+        for (let i = 0; i < cyclesPerFrame; ++i)  {   // cycles before rendering
             let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
 
             fps += .8   // speeding up replacement rate
