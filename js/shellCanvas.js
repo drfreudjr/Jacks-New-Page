@@ -62,13 +62,14 @@ window.dispatchEvent(new Event('resize'));
     function drawLetter () {  
 
         if (fps > 2000) ++ cyclesPerFrame   // cycles before starting overdrive
-        for (let i = 0; i < cyclesPerFrame; ++i)  {   
-            fpsIncrementor +=.08    // increment the incrmentor for nonlinear increase
+
+        for (let i = 0; i < cyclesPerFrame; ++i)  //  just at one per animation frame until overdrive 
+            fpsIncrementor +=.08    // increase the increaser each time thru
             fps += fpsIncrementor   // basic speeding up replacement speed
 
             let positionToChange = (Math.floor(Math.random()*initialWord.length))
 
-            let stringPlacementX = startingArraySpotX+((positionToChange)*boxSize) 
+            let stringPlacementX = startingArraySpotX+((positionToChange)*boxSize) // move one box away for each positio
             let stringPlacementY = startingArraySpotY*((positionToChange)*boxSize)
 
             context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
@@ -80,12 +81,12 @@ window.dispatchEvent(new Event('resize'));
 
             let randomContent = randomCharacterString(1)
 
-            let metrics = context.measureText(randomContent);
+            let metrics = context.measureText(randomContent);   // center letter in box horizontally
             let textWidth = metrics.width
             let centerOfBox = stringPlacementX + (.5*boxSize)
             let xPosition = centerOfBox - (.5*textWidth)
 
-            let yPosition = stringPlacementY + (.77*boxSize) // hacky approximation
+            let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
             context.fillText (randomContent, xPosition, yPosition)
         }
         setTimeout(function() {
