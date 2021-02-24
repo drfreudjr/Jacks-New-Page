@@ -54,8 +54,8 @@ window.dispatchEvent(new Event('resize'));
 
     var fps = 0 
     var cyclesPerFrame = 1
-                const lightColor = '#ffffff'
-            const darkColor = '#808080'
+    const lightColor = '#ffffff'
+    const darkColor = '#808080'
 
     drawLetter()
     function drawLetter () {  
@@ -65,9 +65,7 @@ window.dispatchEvent(new Event('resize'));
 
             let positionToChange = (Math.floor(Math.random()*initialWord.length))
 
-
-
-            let startingSpotX = startingArraySpotX+((positionToChange)*boxSize) // need to compensate for multiplying by 0
+            let startingSpotX = startingArraySpotX+((positionToChange)*boxSize) 
             let startingSpotY = startingArraySpotY*((positionToChange)*boxSize)
 
             context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
