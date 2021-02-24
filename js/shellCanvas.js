@@ -50,8 +50,6 @@ let startingArraySpotY = 0
 drawLetters()
 function drawLetters () { // just work on the first letter
 
-window.dispatchEvent(new Event('resize'));
-
     let fps = 10 // starting fps
     let fpsIncrementor = .3 //starting incrementor
     let cyclesPerFrame = 1
