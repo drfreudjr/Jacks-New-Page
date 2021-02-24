@@ -35,9 +35,9 @@ function sizeCanvas () {                // Create or resize
     drawScreen()     
 }
 
-function drawScreen() {  // wrapper that gets called on resize event
+//  // Enter Page Specific Code here
 
-     //  // Enter Page Specific Code here
+function drawScreen() {  // wrapper that gets called on resize event
 
 const initialWord = 'Jack Wilcox'
 
@@ -52,16 +52,17 @@ function drawLetters () { // just work on the first letter
 
 window.dispatchEvent(new Event('resize'));
 
-    var fps = 0 
+    var fps = 1
+    var fpsIncrementor = 0
     var cyclesPerFrame = 1
     const lightColor = '#ffffff'
     const darkColor = '#808080'
 
     drawLetter()
     function drawLetter () {  
-
+        fpsIncrementor +=.1
         for (let i = 0; i < cyclesPerFrame; ++i)  {   // cycles before rendering
-            fps += .8   // basic speeding up replacement speed
+            fps += fpsIncrementor   // basic speeding up replacement speed
 
             let positionToChange = (Math.floor(Math.random()*initialWord.length))
 
@@ -83,7 +84,7 @@ window.dispatchEvent(new Event('resize'));
             let xPosition = centerOfBox - (.5*textWidth)
 
             let yPosition = stringPlacementY + (.77*boxSize) // hacky approximation
-            context.fillText (randomContent,xPosition, yPosition)
+            context.fillText (randomContent, xPosition, yPosition)
         }
         setTimeout(function() {
         requestAnimationFrame(drawLetter)
