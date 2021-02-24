@@ -59,15 +59,15 @@ window.dispatchEvent(new Event('resize'));
     function drawLetter () {  
 
         for (let i = 0; i < cyclesPerFrame; ++i)  {   // cycles before rendering
-            let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
+            let positionToChange = (Math.floor(Math.random()*initialWord.length))
 
             fps += .8   // speeding up replacement rate
 
             const lightColor = '#ffffff'
             const darkColor = '#808080'
 
-            let startingSpotX = startingArraySpotX+((ordinalPosition)*boxSize) // need to compensate for multiplying by 0
-            let startingSpotY = startingArraySpotY*((ordinalPosition)*boxSize)
+            let startingSpotX = startingArraySpotX+((positionToChange)*boxSize) // need to compensate for multiplying by 0
+            let startingSpotY = startingArraySpotY*((positionToChange)*boxSize)
 
             context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
             context.fillRect(startingSpotX, startingSpotY, boxSize, boxSize)
