@@ -52,19 +52,20 @@ function drawLetters () { // just work on the first letter
 
 window.dispatchEvent(new Event('resize'));
 
-    var fps = 0
+    var fps = 0 
     var cyclesPerFrame = 1
+                const lightColor = '#ffffff'
+            const darkColor = '#808080'
 
     drawLetter()
     function drawLetter () {  
 
         for (let i = 0; i < cyclesPerFrame; ++i)  {   // cycles before rendering
+            fps += .8   // basic speeding up replacement speed
+
             let positionToChange = (Math.floor(Math.random()*initialWord.length))
 
-            fps += .8   // speeding up replacement rate
 
-            const lightColor = '#ffffff'
-            const darkColor = '#808080'
 
             let startingSpotX = startingArraySpotX+((positionToChange)*boxSize) // need to compensate for multiplying by 0
             let startingSpotY = startingArraySpotY*((positionToChange)*boxSize)
