@@ -57,7 +57,7 @@ window.dispatchEvent(new Event('resize'));
     drawLetter()
     function drawLetter () {  
 
-        for (let i=0;i<cyclesPerFrame;++i)  {   // do many draws before painting
+        for (let i = 0; i < cyclesPerFrame; ++i)  {   // do many draws before painting
             let ordinalPosition = (Math.floor(Math.random()*initialWord.length))
 
             fps += .8   // speeding up replacement rate
@@ -84,7 +84,7 @@ window.dispatchEvent(new Event('resize'));
 
             let yPosition = startingSpotY + (.77*boxSize) // hacky approximation
             context.fillText (randomContent,xPosition, yPosition)
-            }
+        }
         setTimeout(function() {
         requestAnimationFrame(drawLetter)
         }, 1000 / fps)
