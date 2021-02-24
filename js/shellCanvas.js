@@ -61,9 +61,9 @@ window.dispatchEvent(new Event('resize'));
     drawLetter()
     function drawLetter () {  
 
-        if (fps > 2000) ++ cyclesPerFrame   // cycles before starting overdrive
+        if (fps > 2000) ++ cyclesPerFrame // cycles before starting overdrive
 
-        for (let i = 0; i < cyclesPerFrame; ++i)  //  just at one per animation frame until overdrive 
+        for (let i = 0; i < cyclesPerFrame; ++i)  {//  just at one per animation frame until overdrive 
             fpsIncrementor +=.08    // increase the increaser each time thru
             fps += fpsIncrementor   // basic speeding up replacement speed
 
