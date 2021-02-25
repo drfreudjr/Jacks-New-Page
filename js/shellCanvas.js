@@ -16,8 +16,10 @@ let global = {
     initialCyclesPerFrame : 1,
 }
 
-let fpsIncrementor = .3 //starting incrementor
-let letterSize = global.letterToBoxRatio*global.boxSize
+let letterSize = global.letterToBoxRatio*global.boxSize // set initial calculated values
+let fps = global.initialFps 
+let fpsIncrementor = global.initialFpsIncrementor
+let cyclesPerFrame = global.initialCyclesPerFrame
 
 window.onload = function () {           // onload wrapper
                                         // Global 2D context reference
@@ -52,14 +54,15 @@ function sizeCanvas () {                // Create or resize
 
 //  // Enter Page Specific Code here
 
+function getCenterXPosition (randomContent, stringPlacementX) {
+            let metrics = context.measureText(randomContent);  
+            let textWidth = metrics.width
+            let centerOfBox = stringPlacementX + (.5*global.boxSize)
+            let xPosition = centerOfBox - (.5*textWidth)
+            return (xPosition)
+}
+
 function drawScreen() {  // wrapper that gets called on resize event
-
-drawLetters()
-function drawLetters () { 
-    let fps = global.initialFps 
-    let fpsIncrementor = global.initialFpsIncrementor
-    let cyclesPerFrame = global.initialCyclesPerFrame
-
     drawLetter()
     function drawLetter () {  
 
@@ -81,12 +84,10 @@ function drawLetters () {
 
             context.font = `${letterSize}px serif`
 
-            let randomContent = randomCharacterString(1)
+            let randomContent = randomCharacterString(1) // module call <arg> is length
 
-            let metrics = context.measureText(randomContent);   // center letter in box horizontally
-            let textWidth = metrics.width
-            let centerOfBox = stringPlacementX + (.5*global.boxSize)
-            let xPosition = centerOfBox - (.5*textWidth)
+
+            let xPosition = getCenterXPosition(randomContent, stringPlacementX)
 
             let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
             context.fillText (randomContent, xPosition, yPosition)
@@ -95,7 +96,6 @@ function drawLetters () {
         requestAnimationFrame(drawLetter)
         }, 1000 / fps)
     }
-}
 
 
 }   // end drawScreen wrapper
