@@ -15,6 +15,7 @@ let global = {
     initialFpsIncrementor : .3,
     initialCyclesPerFrame : 1,
     cyclesBeforeOverdrive : 2000,
+    totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
 }
 
 let letterSize = global.letterToBoxRatio*global.boxSize // set initial calculated values
@@ -69,24 +70,24 @@ function drawScreen() {  // wrapper that gets called on resize event
 drawLetters()
 
 function drawLetters (){
+    global.totalNumberofPaints ++
+    cl(global.totalNumberofPaints)
+    if (global.totalNumberofPaints < 300) {
+        setTimeout(function() {
+            drawLetter()
+            requestAnimationFrame(drawLetters)
 
-    setTimeout(function() {
-        drawLetter()
-        requestAnimationFrame(drawLetters)
-
-        fpsIncrementor +=.08    // increase the increaser each time thru to get acceleration
-        fps += fpsIncrementor   // basic speeding up replacement speed 
-    }, 1000 / fps)
+            fpsIncrementor +=.08    // increase the increaser each time thru to get acceleration
+            fps += fpsIncrementor   // basic speeding up replacement speed 
+        }, 1000 / fps)
+    }
 }
 
-// drawLetter()
 function drawLetter () {  
 
 if (fps > global.cyclesBeforeOverdrive) ++ cyclesPerFrame   // cycles before starting overdrive
 
     for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
-        // fpsIncrementor +=.08    // increase the increaser each time thru to get acceleration
-        // fps += fpsIncrementor   // basic speeding up replacement speed
 
         let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
         let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each positio
