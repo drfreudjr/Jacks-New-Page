@@ -65,14 +65,28 @@ function getCenterXPosition (randomContent, stringPlacementX) {  // returns x po
 
 function drawScreen() {  // wrapper that gets called on resize event
 
-drawLetter()
+
+drawLetters()
+
+function drawLetters (){
+
+    setTimeout(function() {
+        drawLetter()
+        requestAnimationFrame(drawLetters)
+
+        fpsIncrementor +=.08    // increase the increaser each time thru to get acceleration
+        fps += fpsIncrementor   // basic speeding up replacement speed 
+    }, 1000 / fps)
+}
+
+// drawLetter()
 function drawLetter () {  
 
 if (fps > global.cyclesBeforeOverdrive) ++ cyclesPerFrame   // cycles before starting overdrive
 
     for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
-        fpsIncrementor +=.08    // increase the increaser each time thru to get acceleration
-        fps += fpsIncrementor   // basic speeding up replacement speed
+        // fpsIncrementor +=.08    // increase the increaser each time thru to get acceleration
+        // fps += fpsIncrementor   // basic speeding up replacement speed
 
         let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
         let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each positio
@@ -89,9 +103,7 @@ if (fps > global.cyclesBeforeOverdrive) ++ cyclesPerFrame   // cycles before sta
         context.fillText (randomContent, xPosition, yPosition)
     }
 
-    setTimeout(function() {
-    requestAnimationFrame(drawLetter)
-    }, 1000 / fps)
+
 }  // drawLetter function
 
 
