@@ -7,6 +7,10 @@ let global = {
     initialWord : 'Jack Wilcox',
     boxSize: 50,
     letterToBoxRatio : .9,
+    startingArraySpotX : 0,
+    startingArraySpotY :0,
+    lightColor : '#ffffff',
+    darkColor : '#808080',
 }
 let letterSize = global.letterToBoxRatio*global.boxSize
 
@@ -43,27 +47,15 @@ function sizeCanvas () {                // Create or resize
 
 //  // Enter Page Specific Code here
 
-
-
-
-
-
 function drawScreen() {  // wrapper that gets called on resize event
 
-
-let letterToBoxRatio = .9
-let letterSize = letterToBoxRatio*global.boxSize
-let startingArraySpotX = 0
-let startingArraySpotY = 0
-
 drawLetters()
-function drawLetters () { // just work on the first letter
+function drawLetters () { 
 
     let fps = 10 // starting fps
     let fpsIncrementor = .3 //starting incrementor
     let cyclesPerFrame = 1
-    const lightColor = '#ffffff'
-    const darkColor = '#808080'
+
 
     drawLetter()
     function drawLetter () {  
@@ -76,13 +68,13 @@ function drawLetters () { // just work on the first letter
 
             let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
 
-            let stringPlacementX = startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each positio
-            let stringPlacementY = startingArraySpotY*((positionToChange)*global.boxSize)
+            let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each positio
+            let stringPlacementY = global.startingArraySpotY*((positionToChange)*global.boxSize)
 
-            context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
+            context.fillStyle = (Math.floor(Math.random()*2) == 0) ? global.darkColor : global.lightColor // random bg
             context.fillRect(stringPlacementX, stringPlacementY, global.boxSize, global.boxSize)
 
-            context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
+            context.fillStyle = (context.fillStyle == global.lightColor) ?  global.darkColor : global.lightColor // opposite fg
 
             context.font = `${letterSize}px serif`
 
