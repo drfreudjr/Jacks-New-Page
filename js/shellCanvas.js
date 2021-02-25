@@ -11,11 +11,12 @@ let global = {
     startingArraySpotY :0,
     lightColor : '#ffffff',
     darkColor : '#808080',
-    initialFps : 0,
+    initialFps : 5,
+    initialFpsIncrementor : .3,
+    initialCyclesPerFrame : 1,
 }
 
 let fpsIncrementor = .3 //starting incrementor
-let cyclesPerFrame = 1
 let letterSize = global.letterToBoxRatio*global.boxSize
 
 window.onload = function () {           // onload wrapper
@@ -56,6 +57,9 @@ function drawScreen() {  // wrapper that gets called on resize event
 drawLetters()
 function drawLetters () { 
     let fps = global.initialFps 
+    let fpsIncrementor = global.initialFpsIncrementor
+    let cyclesPerFrame = global.initialCyclesPerFrame
+
     drawLetter()
     function drawLetter () {  
 
