@@ -3,6 +3,13 @@ import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
+let global = {
+    initialWord : 'Jack Wilcox',
+    boxSize: 50,
+    letterToBoxRatio : .9,
+}
+let letterSize = global.letterToBoxRatio*global.boxSize
+
 
 window.onload = function () {           // onload wrapper
                                         // Global 2D context reference
@@ -36,13 +43,10 @@ function sizeCanvas () {                // Create or resize
 }
 
 //  // Enter Page Specific Code here
-const initialWord = 'Jack Wilcox'
 
-let boxSize = 50   //
-let letterToBoxRatio = .9
-let letterSize = letterToBoxRatio*boxSize
-let startingArraySpotX = 0
-let startingArraySpotY = 0
+
+
+
 
 
 function drawScreen() {  // wrapper that gets called on resize event
@@ -73,7 +77,7 @@ function drawLetters () { // just work on the first letter
             fpsIncrementor +=.08    // increase the increaser each time thru
             fps += fpsIncrementor   // basic speeding up replacement speed
 
-            let positionToChange = (Math.floor(Math.random()*initialWord.length))
+            let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
 
             let stringPlacementX = startingArraySpotX+((positionToChange)*boxSize) // move one box away for each positio
             let stringPlacementY = startingArraySpotY*((positionToChange)*boxSize)
