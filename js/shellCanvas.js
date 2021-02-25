@@ -14,6 +14,7 @@ let global = {
     initialFps : 5,
     initialFpsIncrementor : .3,
     initialCyclesPerFrame : 1,
+    cyclesBeforeOverdrive : 2000,
 }
 
 let letterSize = global.letterToBoxRatio*global.boxSize // set initial calculated values
@@ -54,7 +55,7 @@ function sizeCanvas () {                // Create or resize
 
 //  // Enter Page Specific Code here
 
-function getCenterXPosition (randomContent, stringPlacementX) {
+function getCenterXPosition (randomContent, stringPlacementX) {  // returns x position to draw letter in box
             let metrics = context.measureText(randomContent);  
             let textWidth = metrics.width
             let centerOfBox = stringPlacementX + (.5*global.boxSize)
@@ -63,39 +64,35 @@ function getCenterXPosition (randomContent, stringPlacementX) {
 }
 
 function drawScreen() {  // wrapper that gets called on resize event
+
     drawLetter()
     function drawLetter () {  
 
-        if (fps > 2000) ++ cyclesPerFrame   // cycles before starting overdrive
+    if (fps > global.cyclesBeforeOverdrive) ++ cyclesPerFrame   // cycles before starting overdrive
 
         for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
-            fpsIncrementor +=.08    // increase the increaser each time thru
+            fpsIncrementor +=.08    // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed
 
             let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
-
             let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each positio
             let stringPlacementY = global.startingArraySpotY*((positionToChange)*global.boxSize)
 
             context.fillStyle = (Math.floor(Math.random()*2) == 0) ? global.darkColor : global.lightColor // random bg
             context.fillRect(stringPlacementX, stringPlacementY, global.boxSize, global.boxSize)
-
             context.fillStyle = (context.fillStyle == global.lightColor) ?  global.darkColor : global.lightColor // opposite fg
-
             context.font = `${letterSize}px serif`
 
             let randomContent = randomCharacterString(1) // module call <arg> is length
-
-
             let xPosition = getCenterXPosition(randomContent, stringPlacementX)
-
             let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
             context.fillText (randomContent, xPosition, yPosition)
         }
+
         setTimeout(function() {
         requestAnimationFrame(drawLetter)
         }, 1000 / fps)
-    }
+    }  // drawLetter function
 
 
 }   // end drawScreen wrapper
