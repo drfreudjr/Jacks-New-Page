@@ -36,6 +36,14 @@ function sizeCanvas () {                // Create or resize
 }
 
 //  // Enter Page Specific Code here
+const initialWord = 'Jack Wilcox'
+
+let boxSize = 50   //
+let letterToBoxRatio = .9
+let letterSize = letterToBoxRatio*boxSize
+let startingArraySpotX = 0
+let startingArraySpotY = 0
+
 
 function drawScreen() {  // wrapper that gets called on resize event
 
