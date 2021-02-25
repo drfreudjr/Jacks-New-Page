@@ -10,7 +10,6 @@ let global = {
 }
 let letterSize = global.letterToBoxRatio*global.boxSize
 
-
 window.onload = function () {           // onload wrapper
                                         // Global 2D context reference
 var canvas;                             // Global canvas object reference
@@ -51,11 +50,9 @@ function sizeCanvas () {                // Create or resize
 
 function drawScreen() {  // wrapper that gets called on resize event
 
-const initialWord = 'Jack Wilcox'
 
-let boxSize = 50   //
 let letterToBoxRatio = .9
-let letterSize = letterToBoxRatio*boxSize
+let letterSize = letterToBoxRatio*global.boxSize
 let startingArraySpotX = 0
 let startingArraySpotY = 0
 
@@ -79,11 +76,11 @@ function drawLetters () { // just work on the first letter
 
             let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
 
-            let stringPlacementX = startingArraySpotX+((positionToChange)*boxSize) // move one box away for each positio
-            let stringPlacementY = startingArraySpotY*((positionToChange)*boxSize)
+            let stringPlacementX = startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each positio
+            let stringPlacementY = startingArraySpotY*((positionToChange)*global.boxSize)
 
             context.fillStyle = (Math.floor(Math.random()*2) == 0) ? darkColor : lightColor // random bg
-            context.fillRect(stringPlacementX, stringPlacementY, boxSize, boxSize)
+            context.fillRect(stringPlacementX, stringPlacementY, global.boxSize, global.boxSize)
 
             context.fillStyle = (context.fillStyle == lightColor) ?  darkColor : lightColor // opposite fg
 
@@ -93,10 +90,10 @@ function drawLetters () { // just work on the first letter
 
             let metrics = context.measureText(randomContent);   // center letter in box horizontally
             let textWidth = metrics.width
-            let centerOfBox = stringPlacementX + (.5*boxSize)
+            let centerOfBox = stringPlacementX + (.5*global.boxSize)
             let xPosition = centerOfBox - (.5*textWidth)
 
-            let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
+            let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
             context.fillText (randomContent, xPosition, yPosition)
         }
         setTimeout(function() {
