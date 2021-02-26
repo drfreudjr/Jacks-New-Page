@@ -15,6 +15,7 @@ let global = {
     darkColor : '#808080',
     initialFps : 5,
     initialFpsIncrementor : .4,
+    incrementorIncrementor : .2, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     cyclesBeforeOverdrive : 200, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
@@ -86,7 +87,7 @@ function drawLetters (){
         setTimeout(function() {
             drawLetter()
             requestAnimationFrame(drawLetters)
-            fpsIncrementor +=.2    // increase the increaser each time thru to get acceleration
+            fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     // }
