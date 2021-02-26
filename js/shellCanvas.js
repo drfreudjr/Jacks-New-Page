@@ -25,13 +25,13 @@ let fps = global.initialFps
 let fpsIncrementor = global.initialFpsIncrementor
 let cyclesPerFrame = global.initialCyclesPerFrame
 
-for (let i = 0; i < global.initialWord.length; ++i) // initialize matching table
+for (let i = 0; i < global.initialWord.length; ++i) // seed letter matching table
     global.wordMatchTable[i] = false
 
 window.onload = function () {           // onload wrapper
-                                        // Global 2D context reference
-var canvas;                             // Global canvas object reference
-var context; 
+                                        
+var canvas;    // Global 2D context reference                            
+var context;   // Global canvas object reference
 
 // // Begin dynamic fulls screen canvas code
 
@@ -103,15 +103,12 @@ function drawLetter () {
  
         context.fillStyle = (context.fillStyle == global.lightColor) ?  global.darkColor : global.lightColor // opposite fg
 
-
-
         let xPosition = getCenterXPosition(randomCharacter, stringPlacementX)
         let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
 
         // if (global.wordMatchTable[positionToChange] = false) // see if letter locked in
             context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
     }
-
 }  // drawLetter function
 
 
