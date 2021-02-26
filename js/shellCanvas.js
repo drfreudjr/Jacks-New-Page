@@ -5,6 +5,7 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let global = {
     initialWord : 'Jack Wilcox',
+    wordMatchTable: [],
     boxSize: 50,
     letterToBoxRatio : .9,
     startingArraySpotX : 0,
@@ -22,6 +23,12 @@ let letterSize = global.letterToBoxRatio*global.boxSize // set initial calculate
 let fps = global.initialFps 
 let fpsIncrementor = global.initialFpsIncrementor
 let cyclesPerFrame = global.initialCyclesPerFrame
+
+for (let i = 0; i < global.initialWord.length; ++i) // initialize matching table
+    global.wordMatchTable[i] = false
+
+cl(global.wordMatchTable)
+
 
 window.onload = function () {           // onload wrapper
                                         // Global 2D context reference
@@ -67,11 +74,11 @@ function getCenterXPosition (randomContent, stringPlacementX) {  // returns x po
 function drawScreen() {  // wrapper that gets called on resize event
 
 
-drawLetters()
 
+
+drawLetters()
 function drawLetters (){
     global.totalNumberofPaints ++
-    cl(global.totalNumberofPaints)
     if (global.totalNumberofPaints < 300) {
         setTimeout(function() {
             drawLetter()
@@ -85,7 +92,7 @@ function drawLetters (){
 
 function drawLetter () {  
 
-if (fps > global.cyclesBeforeOverdrive) ++ cyclesPerFrame   // cycles before starting overdrive
+    if (fps > global.cyclesBeforeOverdrive) ++ cyclesPerFrame   // cycles before starting overdrive
 
     for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
 
