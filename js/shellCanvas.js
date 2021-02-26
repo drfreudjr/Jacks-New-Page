@@ -74,24 +74,27 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 animation()
 function animation (){
-    // cl(global.totalNumberofPaints, cyclesPerFrame)
-    global.totalNumberofPaints ++
-    if (fps > global.cyclesBeforeOverdrive) {
-        ++ cyclesPerFrame // twice the writing per paint so..
-        fps *=.5    // half the fps (which will keep increasing)
-    }
+    if (lockInPosition < global.initialWord.length) { // kdrawing until lst lockInLetter
 
-    setTimeout(function() {
-        drawLetter()
-        requestAnimationFrame(animation)
-        fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
-        fps += fpsIncrementor   // basic speeding up replacement speed 
-    }, 1000 / fps)
+        global.totalNumberofPaints ++   // simple overall counter
+
+        if (fps > global.cyclesBeforeOverdrive) { 
+            ++ cyclesPerFrame // twice the writing per paint so..
+            fps *=.5    // half the fps (which will keep increasing)
+        }
+
+        setTimeout(function() {
+           drawLetter()
+            requestAnimationFrame(animation)
+            fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
+            fps += fpsIncrementor   // basic speeding up replacement speed 
+        }, 1000 / fps)
+    }
 }
 
 function drawLetter () {  
 
-    for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
+    for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
 
         let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
         let randomCharacter = randomCharacterString(1) // external module call <arg> is length
