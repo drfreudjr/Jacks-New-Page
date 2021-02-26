@@ -5,19 +5,19 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let global = {
     initialWord : 'Jack Wilcox',
-    wordMatchTable: [],
-    boxSize: 50,
-    letterToBoxRatio : .9,
-    startingArraySpotX : 0,
+    wordMatchTable: [], // stores whether letter from initial word rendered
+    boxSize: 50,        // size of container for letters
+    letterToBoxRatio : .9,  // how big is the letter relative to box
+    startingArraySpotX : 0, // where to draw the whole thing
     startingArraySpotY :0,
     lightColor : '#ffffff',
     darkColor : '#808080',
     initialFps : 5,
     initialFpsIncrementor : .4,
-    initialCyclesPerFrame : 1,
-    cyclesBeforeOverdrive : 200,
+    initialCyclesPerFrame : 1,  // how many letters to draw per paint
+    cyclesBeforeOverdrive : 200, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
-    delayBeforeLockingLetters : 250,
+    delayBeforeLockingLetters : 250, // how long before starting to seed te word letters
 }
 
 let letterSize = global.letterToBoxRatio*global.boxSize // set initial calculated values
