@@ -72,9 +72,8 @@ function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x 
 
 function drawScreen() {  // wrapper that gets called on resize event
 
-
-drawLetters()
-function drawLetters (){
+animation()
+function animation (){
     global.totalNumberofPaints ++
     cl(global.totalNumberofPaints)
     if (fps > global.cyclesBeforeOverdrive) {
@@ -86,7 +85,7 @@ function drawLetters (){
     // if (global.totalNumberofPaints < global.delayBeforeLockingLetters) {
         setTimeout(function() {
             drawLetter()
-            requestAnimationFrame(drawLetters)
+            requestAnimationFrame(animation)
             fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
