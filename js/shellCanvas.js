@@ -96,19 +96,23 @@ function drawLetter () {
     for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
 
         let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
+        let randomContent = randomCharacterString(1) // module call <arg> is length
+        
         let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each positio
         let stringPlacementY = global.startingArraySpotY*((positionToChange)*global.boxSize)
 
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? global.darkColor : global.lightColor // random bg
         context.fillRect(stringPlacementX, stringPlacementY, global.boxSize, global.boxSize)
+ 
         context.fillStyle = (context.fillStyle == global.lightColor) ?  global.darkColor : global.lightColor // opposite fg
         context.font = `${letterSize}px serif`
 
-        let randomContent = randomCharacterString(1) // module call <arg> is length
+
         let xPosition = getCenterXPosition(randomContent, stringPlacementX)
         let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
 
-        context.fillText (randomContent, xPosition, yPosition) // draw the damn thing
+        // if (global.wordMatchTable[positionToChange] = false) // see if letter locked in
+            context.fillText (randomContent, xPosition, yPosition) // draw the damn thing
     }
 
 }  // drawLetter function
