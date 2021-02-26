@@ -75,12 +75,13 @@ animation()
 function animation (){
     cl(global.totalNumberofPaints, cyclesPerFrame)
     global.totalNumberofPaints ++
-    cl(global.totalNumberofPaints)
-    if (global.totalNumberofPaints == global.cyclesBeforeOverdrive) {
+    if (global.totalNumberofPaints > global.cyclesBeforeOverdrive) {
         ++ cyclesPerFrame // twice the writing per paint so..
         fps *=.5    // half the fps (which will keep increasing)
     }
 
+// let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
+// let randomCharacter = randomCharacterString(1) // external module call <arg> is length
 
     // if (global.totalNumberofPaints < global.delayBeforeLockingLetters) {
         setTimeout(function() {
