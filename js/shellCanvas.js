@@ -81,12 +81,12 @@ function animation (){
         fps *=.5    // half the fps (which will keep increasing)
     }
 
-        setTimeout(function() {
-            drawLetter()
-            requestAnimationFrame(animation)
-            fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
-            fps += fpsIncrementor   // basic speeding up replacement speed 
-        }, 1000 / fps)
+    setTimeout(function() {
+        drawLetter()
+        requestAnimationFrame(animation)
+        fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
+        fps += fpsIncrementor   // basic speeding up replacement speed 
+    }, 1000 / fps)
 }
 
 function drawLetter () {  
