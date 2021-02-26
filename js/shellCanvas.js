@@ -104,19 +104,31 @@ function drawLetter () {
         let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each position
         let stringPlacementY = global.startingArraySpotY*((positionToChange)*global.boxSize)
 
+
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? global.darkColor : global.lightColor // random bg
+
+        if (global.totalNumberofPaints > global.delayBeforeLockingLetters) // bg dark
+            context.fillStyle = global.darkColor
+
         context.fillRect(stringPlacementX, stringPlacementY, global.boxSize, global.boxSize)
- 
         context.fillStyle = (context.fillStyle == global.lightColor) ?  global.darkColor : global.lightColor // opposite fg
 
         let xPosition = getCenterXPosition(randomCharacter, stringPlacementX)
         let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
 
-        // if (global.wordMatchTable[positionToChange] = false) // see if letter locked in
-            context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
+        if (global.totalNumberofPaints > global.delayBeforeLockingLetters) {    // start locking letters
+            global.delayBeforeLockingLetters += Math.floor(Math.random()*30)    // kick the can to the next time
+            context.fillStyle = global.darkColor
+        }
+        cl (global.wordMatchTable[positionToChange])
+        context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
     }
 }  // drawLetter function
 
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
+
+        // if (global.wordMatchTable[positionToChange] == false) {// see if letter locked in 
+
+// when 107 true, insert letter, then increase delay variable by random amount tehn it should triger again
