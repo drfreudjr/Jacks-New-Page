@@ -28,8 +28,6 @@ let cyclesPerFrame = global.initialCyclesPerFrame
 for (let i = 0; i < global.initialWord.length; ++i) // initialize matching table
     global.wordMatchTable[i] = false
 
-
-
 window.onload = function () {           // onload wrapper
                                         // Global 2D context reference
 var canvas;                             // Global canvas object reference
@@ -39,7 +37,6 @@ var context;
 
 sizeCanvas()                            // create initial canvas
 addEventListener("resize", sizeCanvas); // resize canvas and redraw on window size change
-
 
 function createCanvas () {   
     const canvas = document.createElement("canvas"); 
@@ -63,8 +60,8 @@ function sizeCanvas () {                // Create or resize
 
 //  // Enter Page Specific Code here
 
-function getCenterXPosition (randomContent, stringPlacementX) {  // returns x position to draw letter in box
-            let metrics = context.measureText(randomContent);  
+function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
+            let metrics = context.measureText(randomCharacter);  
             let textWidth = metrics.width
             let centerOfBox = stringPlacementX + (.5*global.boxSize)
             let xPosition = centerOfBox - (.5*textWidth)
@@ -77,12 +74,11 @@ function drawScreen() {  // wrapper that gets called on resize event
 drawLetters()
 function drawLetters (){
     global.totalNumberofPaints ++
-    // cl(global.totalNumberofPaints)
+    cl(global.totalNumberofPaints)
     // if (global.totalNumberofPaints < global.delayBeforeLockingLetters) {
         setTimeout(function() {
             drawLetter()
             requestAnimationFrame(drawLetters)
-
             fpsIncrementor +=.2    // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
@@ -96,7 +92,7 @@ function drawLetter () {
     for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
 
         let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
-        let randomContent = randomCharacterString(1) // external module call <arg> is length
+        let randomCharacter = randomCharacterString(1) // external module call <arg> is length
         context.font = `${letterSize}px serif`
 
         let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each position
@@ -109,11 +105,11 @@ function drawLetter () {
 
 
 
-        let xPosition = getCenterXPosition(randomContent, stringPlacementX)
+        let xPosition = getCenterXPosition(randomCharacter, stringPlacementX)
         let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
 
         // if (global.wordMatchTable[positionToChange] = false) // see if letter locked in
-            context.fillText (randomContent, xPosition, yPosition) // draw the damn thing
+            context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
     }
 
 }  // drawLetter function
