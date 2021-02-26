@@ -17,6 +17,7 @@ let global = {
     initialCyclesPerFrame : 1,
     cyclesBeforeOverdrive : 200,
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
+    delayBeforeLockingLetters : 250,
 }
 
 let letterSize = global.letterToBoxRatio*global.boxSize // set initial calculated values
@@ -74,12 +75,11 @@ function getCenterXPosition (randomContent, stringPlacementX) {  // returns x po
 function drawScreen() {  // wrapper that gets called on resize event
 
 
-
-
 drawLetters()
 function drawLetters (){
     global.totalNumberofPaints ++
-    if (global.totalNumberofPaints < 300) {
+    cl(global.totalNumberofPaints)
+    // if (global.totalNumberofPaints < global.delayBeforeLockingLetters) {
         setTimeout(function() {
             drawLetter()
             requestAnimationFrame(drawLetters)
@@ -87,7 +87,7 @@ function drawLetters (){
             fpsIncrementor +=.2    // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
-    }
+    // }
 }
 
 function drawLetter () {  
@@ -108,9 +108,9 @@ function drawLetter () {
         let randomContent = randomCharacterString(1) // module call <arg> is length
         let xPosition = getCenterXPosition(randomContent, stringPlacementX)
         let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
+
         context.fillText (randomContent, xPosition, yPosition)
     }
-
 
 }  // drawLetter function
 
