@@ -1,4 +1,3 @@
-
 const cl = console.log;
 import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
@@ -14,7 +13,7 @@ let global = {
     lightColor : '#ffffff',
     darkColor : '#808080',
     initialFps : 5,
-    initialFpsIncrementor : .4,
+    initialFpsIncrementor : 1,
     incrementorIncrementor : .2, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     cyclesBeforeOverdrive : 200, // when to increase letters/paint
@@ -74,9 +73,10 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 animation()
 function animation (){
+    cl(global.totalNumberofPaints, cyclesPerFrame)
     global.totalNumberofPaints ++
     cl(global.totalNumberofPaints)
-    if (fps > global.cyclesBeforeOverdrive) {
+    if (global.totalNumberofPaints == global.cyclesBeforeOverdrive) {
         ++ cyclesPerFrame // twice the writing per paint so..
         fps *=.5    // half the fps (which will keep increasing)
     }
