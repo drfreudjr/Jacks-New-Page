@@ -74,9 +74,9 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 animation()
 function animation (){
-    cl(global.totalNumberofPaints, cyclesPerFrame)
+    // cl(global.totalNumberofPaints, cyclesPerFrame)
     global.totalNumberofPaints ++
-    if (global.totalNumberofPaints > global.cyclesBeforeOverdrive) {
+    if (fps > global.cyclesBeforeOverdrive) {
         ++ cyclesPerFrame // twice the writing per paint so..
         fps *=.5    // half the fps (which will keep increasing)
     }
