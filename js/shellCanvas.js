@@ -1,3 +1,4 @@
+
 const cl = console.log;
 import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
@@ -20,7 +21,7 @@ let global = {
     delayBeforeLockingLetters : 250, // how long before starting to seed te word letters
 }
 
-let letterSize = global.letterToBoxRatio*global.boxSize // set initial calculated values
+let letterSize = global.letterToBoxRatio*global.boxSize // set calculated lettersize
 let fps = global.initialFps 
 let fpsIncrementor = global.initialFpsIncrementor
 let cyclesPerFrame = global.initialCyclesPerFrame
@@ -75,6 +76,12 @@ drawLetters()
 function drawLetters (){
     global.totalNumberofPaints ++
     cl(global.totalNumberofPaints)
+    if (fps > global.cyclesBeforeOverdrive) {
+        ++ cyclesPerFrame // twice the writing per paint so..
+        fps *=.5    // half the fps (which will keep increasing)
+    }
+
+
     // if (global.totalNumberofPaints < global.delayBeforeLockingLetters) {
         setTimeout(function() {
             drawLetter()
@@ -86,8 +93,6 @@ function drawLetters (){
 }
 
 function drawLetter () {  
-
-    if (fps > global.cyclesBeforeOverdrive) ++ cyclesPerFrame   // cycles before starting overdrive
 
     for (let i = 0; i < cyclesPerFrame; ++i) { //  just at one per animation frame until overdrive 
 
