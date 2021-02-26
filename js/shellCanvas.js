@@ -28,7 +28,6 @@ let cyclesPerFrame = global.initialCyclesPerFrame
 for (let i = 0; i < global.initialWord.length; ++i) // initialize matching table
     global.wordMatchTable[i] = false
 
-cl(global.wordMatchTable)
 
 
 window.onload = function () {           // onload wrapper
@@ -78,7 +77,7 @@ function drawScreen() {  // wrapper that gets called on resize event
 drawLetters()
 function drawLetters (){
     global.totalNumberofPaints ++
-    cl(global.totalNumberofPaints)
+    // cl(global.totalNumberofPaints)
     // if (global.totalNumberofPaints < global.delayBeforeLockingLetters) {
         setTimeout(function() {
             drawLetter()
@@ -109,7 +108,7 @@ function drawLetter () {
         let xPosition = getCenterXPosition(randomContent, stringPlacementX)
         let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
 
-        context.fillText (randomContent, xPosition, yPosition)
+        context.fillText (randomContent, xPosition, yPosition) // draw the damn thing
     }
 
 }  // drawLetter function
