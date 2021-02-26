@@ -25,6 +25,7 @@ let letterSize = global.letterToBoxRatio*global.boxSize // set calculated letter
 let fps = global.initialFps 
 let fpsIncrementor = global.initialFpsIncrementor
 let cyclesPerFrame = global.initialCyclesPerFrame
+let lockInPosition = 0 // what letter to lock in
 
 for (let i = 0; i < global.initialWord.length; ++i) // seed letter matching table
     global.wordMatchTable[i] = false
@@ -80,17 +81,12 @@ function animation (){
         fps *=.5    // half the fps (which will keep increasing)
     }
 
-// let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
-// let randomCharacter = randomCharacterString(1) // external module call <arg> is length
-
-    // if (global.totalNumberofPaints < global.delayBeforeLockingLetters) {
         setTimeout(function() {
             drawLetter()
             requestAnimationFrame(animation)
             fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
-    // }
 }
 
 function drawLetter () {  
