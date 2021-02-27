@@ -18,7 +18,7 @@ let page = {   // page global object
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     cyclesBeforeOverdrive : 200, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
-    delayBeforeLockingLetters : 250, // how long before starting to seed te word letters
+    delayBeforeLockingLetters : 100, // how long before starting to seed te word letters
 }
 
 let letterSize = page.letterToBoxRatio*page.boxSize // set calculated lettersize
@@ -117,10 +117,18 @@ function drawLetter () {
             page.delayBeforeLockingLetters += Math.floor(Math.random()*30)    // kick the can to the next time
             context.fillStyle = page.darkColor
             charactersLockedIn ++
-
+            let randomWordPosition = true //begin random lock in process
+            let placeHolder = true
+            while (placeHolder == true)  {  // make sure we get a false/not locked in one
+                randomWordPosition = Math.floor(Math.random()*(page.initialWord.length))
+                placeHolder = page.wordLockedIn[randomWordPosition]
+            }    
+            page.wordLockedIn[randomWordPosition] = true
+            cl(randomWordPosition)
         }
+        // cl(page.wordLockedIn)
         context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
-    }   // cycles/paint loop
+    }   // cycles/paint 'for' loop
 }  // drawLetter function
 
 
