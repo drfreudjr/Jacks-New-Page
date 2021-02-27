@@ -3,7 +3,7 @@ import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
-let global = {
+let g = {   // g = global page object
     initialWord : 'Jack Wilcox',
     wordMatchTable: [], // stores whether letter from initial word rendered
     boxSize: 50,        // size of container for letters
@@ -21,14 +21,14 @@ let global = {
     delayBeforeLockingLetters : 250, // how long before starting to seed te word letters
 }
 
-let letterSize = global.letterToBoxRatio*global.boxSize // set calculated lettersize
-let fps = global.initialFps 
-let fpsIncrementor = global.initialFpsIncrementor
-let cyclesPerFrame = global.initialCyclesPerFrame
-let charctersLeftToLockIn = global.initialWord.length // 
+let letterSize = g.letterToBoxRatio*g.boxSize // set calculated lettersize
+let fps = g.initialFps 
+let fpsIncrementor = g.initialFpsIncrementor
+let cyclesPerFrame = g.initialCyclesPerFrame
+let charctersLeftToLockIn = g.initialWord.length // 
 
-for (let i = 0; i < global.initialWord.length; ++i) // seed letter matching table
-    global.wordMatchTable[i] = false
+for (let i = 0; i < g.initialWord.length; ++i) // seed letter matching table
+    g.wordMatchTable[i] = false
 
 window.onload = function () {           // onload wrapper
                                         
@@ -65,7 +65,7 @@ function sizeCanvas () {                // Create or resize
 function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
             let metrics = context.measureText(randomCharacter);  
             let textWidth = metrics.width
-            let centerOfBox = stringPlacementX + (.5*global.boxSize)
+            let centerOfBox = stringPlacementX + (.5*g.boxSize)
             let xPosition = centerOfBox - (.5*textWidth)
             return (xPosition)
 }
@@ -76,9 +76,9 @@ animation()
 function animation (){
     if (charctersLeftToLockIn > 0) { // kdrawing until lst lockInLetter
 
-        global.totalNumberofPaints ++   // simple overall counter
+        g.totalNumberofPaints ++   // simple overall counter
 
-        if (fps > global.cyclesBeforeOverdrive) { 
+        if (fps > g.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // twice the writing per paint so..
             fps *=.5    // half the fps (which will keep increasing)
         }
@@ -86,7 +86,7 @@ function animation (){
         setTimeout(function() {
            drawLetter()
             requestAnimationFrame(animation)
-            fpsIncrementor +=global.incrementorIncrementor   // increase the increaser each time thru to get acceleration
+            fpsIncrementor +=g.incrementorIncrementor   // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     }
@@ -96,30 +96,29 @@ function drawLetter () {
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
 
-        let positionToChange = (Math.floor(Math.random()*global.initialWord.length))
+        let positionToChange = (Math.floor(Math.random()*g.initialWord.length))
         let randomCharacter = randomCharacterString(1) // external module call <arg> is length
         context.font = `${letterSize}px serif`
 
-        let stringPlacementX = global.startingArraySpotX+((positionToChange)*global.boxSize) // move one box away for each position
-        let stringPlacementY = global.startingArraySpotY*((positionToChange)*global.boxSize)
+        let stringPlacementX = g.startingArraySpotX+((positionToChange)*g.boxSize) // move one box away for each position
+        let stringPlacementY = g.startingArraySpotY*((positionToChange)*g.boxSize)
 
 
-        context.fillStyle = (Math.floor(Math.random()*2) == 0) ? global.darkColor : global.lightColor // random bg
+        context.fillStyle = (Math.floor(Math.random()*2) == 0) ? g.darkColor : g.lightColor // random bg
 
-        if (global.totalNumberofPaints > global.delayBeforeLockingLetters) // bg dark
-            context.fillStyle = global.darkColor
+        if (g.totalNumberofPaints > g.delayBeforeLockingLetters) // bg dark
+            context.fillStyle = g.darkColor
 
-        context.fillRect(stringPlacementX, stringPlacementY, global.boxSize, global.boxSize)
-        context.fillStyle = (context.fillStyle == global.lightColor) ?  global.darkColor : global.lightColor // opposite fg
+        context.fillRect(stringPlacementX, stringPlacementY, g.boxSize, g.boxSize)
+        context.fillStyle = (context.fillStyle == g.lightColor) ?  g.darkColor : g.lightColor // opposite fg
 
         let xPosition = getCenterXPosition(randomCharacter, stringPlacementX)
-        let yPosition = stringPlacementY + (.77*global.boxSize) // hacky center letter vertically
+        let yPosition = stringPlacementY + (.77*g.boxSize) // hacky center letter vertically
 
-        if (global.totalNumberofPaints > global.delayBeforeLockingLetters) {    // start locking letters
-            global.delayBeforeLockingLetters += Math.floor(Math.random()*30)    // kick the can to the next time
-            context.fillStyle = global.darkColor
+        if (g.totalNumberofPaints > g.delayBeforeLockingLetters) {    // start locking letters
+            g.delayBeforeLockingLetters += Math.floor(Math.random()*30)    // kick the can to the next time
+            context.fillStyle = g.darkColor
         }
-        cl (global.wordMatchTable[positionToChange])
         context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
     }
 }  // drawLetter function
