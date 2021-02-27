@@ -117,7 +117,7 @@ function drawLetter () {
             page.delayBeforeLockingLetters += Math.floor(Math.random()*30)    // kick the can to the next time
             context.fillStyle = page.darkColor
             charactersLockedIn ++
-            let randomWordPosition = true //begin random lock in process
+            let randomWordPosition = null //begin random lock in process
             let placeHolder = true
             while (placeHolder == true)  {  // make sure we get a false/not locked in one
                 randomWordPosition = Math.floor(Math.random()*(page.initialWord.length))
@@ -126,8 +126,8 @@ function drawLetter () {
             page.wordLockedIn[randomWordPosition] = true
             cl(randomWordPosition)
         }
-        // cl(page.wordLockedIn)
-        context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
+        // if (page.wordLockedIn[randomWordPosition] == false)  // make sure leter isn't locked in
+            context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
     }   // cycles/paint 'for' loop
 }  // drawLetter function
 
