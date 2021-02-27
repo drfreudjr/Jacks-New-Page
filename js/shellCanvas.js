@@ -25,7 +25,7 @@ let letterSize = global.letterToBoxRatio*global.boxSize // set calculated letter
 let fps = global.initialFps 
 let fpsIncrementor = global.initialFpsIncrementor
 let cyclesPerFrame = global.initialCyclesPerFrame
-let lockInPosition = 0 // what letter to lock in
+let charctersLeftToLockIn = global.initialWord.length // 
 
 for (let i = 0; i < global.initialWord.length; ++i) // seed letter matching table
     global.wordMatchTable[i] = false
@@ -74,7 +74,7 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 animation()
 function animation (){
-    if (lockInPosition < global.initialWord.length) { // kdrawing until lst lockInLetter
+    if (charctersLeftToLockIn > 0) { // kdrawing until lst lockInLetter
 
         global.totalNumberofPaints ++   // simple overall counter
 
