@@ -5,7 +5,7 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let page = {   // page global object
     initialWord : 'Jack Wilcox',
-    wordMatchTable: [], // stores whether letter from initial word rendered
+    wordLockedIn: [], // stores whether letter from initial word rendered
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : .9,  // how big is the letter relative to box
     startingArraySpotX : 0, // where to draw the whole thing
@@ -28,7 +28,7 @@ let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0  // 
 
 for (let i = 0; i < page.initialWord.length; ++i) // seed letter matching table
-    page.wordMatchTable[i] = false
+    page.wordLockedIn[i] = false
 
 window.onload = function () {           // onload wrapper
                                         
@@ -116,9 +116,11 @@ function drawLetter () {
         if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {    // start locking letters
             page.delayBeforeLockingLetters += Math.floor(Math.random()*30)    // kick the can to the next time
             context.fillStyle = page.darkColor
+            charactersLockedIn ++
+
         }
         context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
-    }
+    }   // cycles/paint loop
 }  // drawLetter function
 
 
