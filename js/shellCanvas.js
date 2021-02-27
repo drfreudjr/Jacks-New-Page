@@ -3,7 +3,7 @@ import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
-let g = {   // g = global page object
+let g = {   // page global object
     initialWord : 'Jack Wilcox',
     wordMatchTable: [], // stores whether letter from initial word rendered
     boxSize: 50,        // size of container for letters
@@ -25,7 +25,7 @@ let letterSize = g.letterToBoxRatio*g.boxSize // set calculated lettersize
 let fps = g.initialFps 
 let fpsIncrementor = g.initialFpsIncrementor
 let cyclesPerFrame = g.initialCyclesPerFrame
-let charctersLeftToLockIn = g.initialWord.length // 
+let charactersLockedIn = 0  // 
 
 for (let i = 0; i < g.initialWord.length; ++i) // seed letter matching table
     g.wordMatchTable[i] = false
@@ -74,7 +74,7 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 animation()
 function animation (){
-    if (charctersLeftToLockIn > 0) { // kdrawing until lst lockInLetter
+    if (charactersLockedIn <g.initialWord.length) { // keep drawing until lst lockInLetter
 
         g.totalNumberofPaints ++   // simple overall counter
 
@@ -95,14 +95,12 @@ function animation (){
 function drawLetter () {  
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
-
         let positionToChange = (Math.floor(Math.random()*g.initialWord.length))
         let randomCharacter = randomCharacterString(1) // external module call <arg> is length
         context.font = `${letterSize}px serif`
 
         let stringPlacementX = g.startingArraySpotX+((positionToChange)*g.boxSize) // move one box away for each position
         let stringPlacementY = g.startingArraySpotY*((positionToChange)*g.boxSize)
-
 
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? g.darkColor : g.lightColor // random bg
 
