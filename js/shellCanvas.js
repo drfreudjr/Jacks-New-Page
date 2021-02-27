@@ -11,7 +11,7 @@ let page = {   // page global object
     startingArraySpotX : 0, // where to draw the whole thing
     startingArraySpotY :0,
     lightColor : '#ffffff',
-    darkColor : '#808080',
+    darkColor : '#000000',
     initialFps : 5,
     initialFpsIncrementor : 1,
     incrementorIncrementor : .2, // this controls the acceleration
@@ -107,14 +107,16 @@ function drawLetter () {
         if (page.totalNumberofPaints > page.delayBeforeLockingLetters) // bg dark
             context.fillStyle = page.darkColor
 
-        context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
+        if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in
+            context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
+
         context.fillStyle = (context.fillStyle == page.lightColor) ?  page.darkColor : page.lightColor // opposite fg
 
         let xPosition = getCenterXPosition(randomCharacter, stringPlacementX)
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
         if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {    // start locking letters
-            page.delayBeforeLockingLetters += Math.floor(Math.random()*30)    // kick the can to the next time
+            page.delayBeforeLockingLetters += Math.floor(Math.random()*15)    // kick the can to the next time
             context.fillStyle = page.darkColor
             charactersLockedIn ++
             let randomWordPosition = null //begin random lock in process
@@ -124,9 +126,10 @@ function drawLetter () {
                 placeHolder = page.wordLockedIn[randomWordPosition]
             }    
             page.wordLockedIn[randomWordPosition] = true
-            cl(randomWordPosition)
+            randomCharacter = page.initialWord[positionToChange]
+            // cl(randomWordPosition)
         }
-        // if (page.wordLockedIn[randomWordPosition] == false)  // make sure leter isn't locked in
+        if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in
             context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
     }   // cycles/paint 'for' loop
 }  // drawLetter function
