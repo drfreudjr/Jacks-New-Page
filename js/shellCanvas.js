@@ -117,20 +117,6 @@ function drawLetter () {
         let xPosition = getCenterXPosition(randomCharacter, stringPlacementX)
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
-        if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {    // start locking letters
-            page.delayBeforeLockingLetters += Math.floor(Math.random()*15+1)    // kick the can to the next time
-            context.fillStyle = page.darkColor
-            charactersLockedIn ++
-            let randomWordPosition = null //begin random lock in process
-            let placeHolder = true
-            while (placeHolder == true)  {  // make sure we get a false/not locked in one
-                randomWordPosition = Math.floor(Math.random()*(page.initialWord.length))
-                placeHolder = page.wordLockedIn[randomWordPosition]
-            }    
-            page.wordLockedIn[randomWordPosition] = true
-            randomCharacter = page.initialWord[positionToChange]
-            // cl(randomWordPosition)
-        }
         if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in
             context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
     }   // cycles/paint 'for' loop
@@ -143,3 +129,19 @@ function drawLetter () {
         // if (global.wordMatchTable[positionToChange] == false) {// see if letter locked in 
 
 // when 107 true, insert letter, then increase delay variable by random amount tehn it should triger again
+
+
+        // if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {    // start locking letters
+        //     page.delayBeforeLockingLetters += Math.floor(Math.random()*15+1)    // kick the can to the next time
+        //     context.fillStyle = page.darkColor
+        //     charactersLockedIn ++
+        //     let randomWordPosition = null //begin random lock in process
+        //     let placeHolder = true
+        //     while (placeHolder == true)  {  // make sure we get a false/not locked in one
+        //         randomWordPosition = Math.floor(Math.random()*(page.initialWord.length))
+        //         placeHolder = page.wordLockedIn[randomWordPosition]
+        //     }    
+        //     page.wordLockedIn[randomWordPosition] = true
+        //     randomCharacter = page.initialWord[positionToChange]
+        //     cl(randomCharacter)
+        // }
