@@ -74,7 +74,7 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 animation()
 function animation (){
-    if (charactersLockedIn <page.initialWord.length) { // keep drawing until lst lockInLetter
+    if (charactersLockedIn <page.initialWord.length) { // keep drawing until last lockInLetter
 
         page.totalNumberofPaints ++   // simple overall counter
 
@@ -90,6 +90,7 @@ function animation (){
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     }
+    // cl (charactersLockedIn, page.initialWord.length)
 }
 
 function drawLetter () {  
@@ -104,10 +105,11 @@ function drawLetter () {
 
         context.fillStyle = (Math.floor(Math.random()*2) == 0) ? page.darkColor : page.lightColor // random bg
 
-        if (page.totalNumberofPaints > page.delayBeforeLockingLetters) // bg dark
+        if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {// bg dark
             context.fillStyle = page.darkColor
+        }
 
-        if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in
+        if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in 
             context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
 
         context.fillStyle = (context.fillStyle == page.lightColor) ?  page.darkColor : page.lightColor // opposite fg
@@ -116,7 +118,7 @@ function drawLetter () {
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
         if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {    // start locking letters
-            page.delayBeforeLockingLetters += Math.floor(Math.random()*15)    // kick the can to the next time
+            page.delayBeforeLockingLetters += Math.floor(Math.random()*15+1)    // kick the can to the next time
             context.fillStyle = page.darkColor
             charactersLockedIn ++
             let randomWordPosition = null //begin random lock in process
