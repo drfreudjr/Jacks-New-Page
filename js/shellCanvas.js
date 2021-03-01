@@ -13,8 +13,8 @@ let page = {   // page global object
     lightColor : '#ffffff',
     darkColor : '#000000',
     initialFps : 5,
-    initialFpsIncrementor : 1,
-    incrementorIncrementor : .2, // this controls the acceleration
+    initialFpsIncrementor : 0,
+    incrementorIncrementor : .01, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     cyclesBeforeOverdrive : 200, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
@@ -105,8 +105,8 @@ function drawLetter () {
 
         context.fillStyle = page.darkColor
 
-        if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in 
-            context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
+        // if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in 
+        //     context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
 
         context.fillStyle = page.lightColor
 
