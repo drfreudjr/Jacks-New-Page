@@ -7,14 +7,14 @@ let page = {   // page global object
     initialWord : 'Jack Wilcox',
     wordLockedIn: [], // stores whether letter from initial word rendered
     boxSize: 50,        // size of container for letters
-    letterToBoxRatio : .9,  // how big is the letter relative to box
+    letterToBoxRatio : 1.0,  // how big is the letter relative to box
     startingArraySpotX : 0, // where to draw the whole thing
     startingArraySpotY :0,
     lightColor : '#ffffff',
     darkColor : '#000000',
-    initialFps : 5,
+    initialFps : 2,
     initialFpsIncrementor : 0,
-    incrementorIncrementor : .01, // this controls the acceleration
+    incrementorIncrementor : .1, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     cyclesBeforeOverdrive : 200, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
@@ -91,6 +91,7 @@ function animation (){
         }, 1000 / fps)
     }
     // cl (charactersLockedIn, page.initialWord.length)
+    cl(page.totalNumberofPaints)
 }
 
 function drawLetter () {  
@@ -105,8 +106,8 @@ function drawLetter () {
 
         context.fillStyle = page.darkColor
 
-        // if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in 
-        //     context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
+        if (page.wordLockedIn[positionToChange] == false  && page.totalNumberofPaints > 200)  // make sure letter isn't locked in 
+            context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
 
         context.fillStyle = page.lightColor
 
