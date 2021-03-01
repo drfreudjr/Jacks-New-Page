@@ -97,7 +97,7 @@ function drawLetter () {
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
         let positionToChange = (Math.floor(Math.random()*page.initialWord.length))
-        let randomCharacter = randomCharacterString(1) // external module call <arg> is length
+        let letterToInsert = randomCharacterString(1) // external module call <arg> is length
         context.font = `${letterSize}px serif`
 
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // move one box away for each position
@@ -114,11 +114,11 @@ function drawLetter () {
 
         context.fillStyle = (context.fillStyle == page.lightColor) ?  page.darkColor : page.lightColor // opposite fg
 
-        let xPosition = getCenterXPosition(randomCharacter, stringPlacementX)
+        let xPosition = getCenterXPosition(letterToInsert, stringPlacementX)
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
         if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in
-            context.fillText (randomCharacter, xPosition, yPosition) // draw the damn thing
+            context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
     }   // cycles/paint 'for' loop
 }  // drawLetter function
 
