@@ -103,16 +103,12 @@ function drawLetter () {
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // move one box away for each position
         let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize)
 
-        context.fillStyle = (Math.floor(Math.random()*2) == 0) ? page.darkColor : page.lightColor // random bg
-
-        if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {// bg dark
-            context.fillStyle = page.darkColor
-        }
+        context.fillStyle = page.darkColor
 
         if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in 
             context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
 
-        context.fillStyle = (context.fillStyle == page.lightColor) ?  page.darkColor : page.lightColor // opposite fg
+        context.fillStyle = page.lightColor
 
         let xPosition = getCenterXPosition(letterToInsert, stringPlacementX)
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
