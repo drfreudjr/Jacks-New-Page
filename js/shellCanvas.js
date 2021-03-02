@@ -94,9 +94,8 @@ function animation (){
     cl(page.totalNumberofPaints)
 }
 
-function drawRandom () {
-        let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
-        let letterToInsert = randomCharacterString(1) // external module call <arg> is length
+function drawChosenLetter (positionToChange, letterToInsert) {
+
 
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
         let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
@@ -120,7 +119,12 @@ function drawLetter () {
     context.font = `${letterSize}px serif`
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
-        drawRandom()
+        let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
+        let letterToInsert = randomCharacterString(1) // external module call <arg> is length
+
+        drawChosenLetter(positionToChange, letterToInsert)
+
+
     }   // cycles/paint 'for' loop
 }  // drawLetter function
 
