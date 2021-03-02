@@ -4,7 +4,7 @@ import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
 let page = {   // page global object
-    phrase : 'Jack Wilcox',
+    phraseToDraw : 'Jack Wilcox',
     wordLockedIn: [], // stores whether letter from initial word rendered
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1.0,  // how big is the letter relative to box
@@ -27,7 +27,7 @@ let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0  // 
 
-for (let i = 0; i < page.phrase.length; ++i) // seed letter matching table
+for (let i = 0; i < page.phraseToDraw.length; ++i) // seed letter matching table
     page.wordLockedIn[i] = false
 
 window.onload = function () {           // onload wrapper
@@ -74,7 +74,7 @@ function drawScreen() {  // wrapper that gets called on resize event
 
 animation()
 function animation (){
-    if (charactersLockedIn <page.phrase.length) { // keep drawing until last lockInLetter
+    if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
 
         page.totalNumberofPaints ++   // simple overall counter
 
@@ -90,14 +90,14 @@ function animation (){
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     }
-    // cl (charactersLockedIn, page.phrase.length)
+    // cl (charactersLockedIn, page.phraseToDraw.length)
     cl(page.totalNumberofPaints)
 }
 
 function drawLetter () {  
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
-        let positionToChange = (Math.floor(Math.random()*page.phrase.length))
+        let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length
         context.font = `${letterSize}px serif`
 
@@ -135,10 +135,10 @@ function drawLetter () {
         //     let randomWordPosition = null //begin random lock in process
         //     let placeHolder = true
         //     while (placeHolder == true)  {  // make sure we get a false/not locked in one
-        //         randomWordPosition = Math.floor(Math.random()*(page.phrase.length))
+        //         randomWordPosition = Math.floor(Math.random()*(page.phraseToDraw.length))
         //         placeHolder = page.wordLockedIn[randomWordPosition]
         //     }    
         //     page.wordLockedIn[randomWordPosition] = true
-        //     randomCharacter = page.phrase[positionToChange]
+        //     randomCharacter = page.phraseToDraw[positionToChange]
         //     cl(randomCharacter)
         // }
