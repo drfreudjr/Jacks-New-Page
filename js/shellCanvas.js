@@ -4,7 +4,7 @@ import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
 let page = {   // page global object
-    phraseToDraw : 'Jack Wilcox',
+    phraseToDraw : 'Jack Wilcox Productions',
     letterLockedIn: [], // stores whether letter from initial word has been rendered
     randomNoReplacementArray: [],  // array of number positions to use in choosing random PTD position
     boxSize: 50,        // size of container for letters
@@ -13,13 +13,13 @@ let page = {   // page global object
     startingArraySpotY :0,
     lightColor : '#ffffff',
     darkColor : '#000000',
-    initialFps : 2,
-    initialFpsIncrementor : 0,
-    incrementorIncrementor : .1, // this controls the acceleration
+    initialFps : 10,
+    initialFpsIncrementor : 5,
+    incrementorIncrementor : 3, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
-    cyclesBeforeOverdrive : 200, // when to increase letters/paint
+    cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
-    delayBeforeLockingLetters : 100, // how long before starting to seed te word letters
+    delayBeforeLockingLetters : 120, // how long before starting to seed te word letters
 }
 
 let letterSize = page.letterToBoxRatio*page.boxSize // set calculated lettersize
@@ -121,8 +121,8 @@ function drawLetter () {
 
         if (page.totalNumberofPaints >= page.delayBeforeLockingLetters) {// lock letters
             charactersLockedIn ++   // signal to calling function counter to stop
-            page.delayBeforeLockingLetters += Math.floor(Math.random()*30 + 1) // increment next time to lock
-            // get random position w/o repeaat
+            page.delayBeforeLockingLetters += Math.floor(Math.random()*2 + 1) // increment next time to lock
+
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
             positionToChange = page.randomNoReplacementArray[j]
             page.randomNoReplacementArray.splice(j,1)
