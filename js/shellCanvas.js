@@ -106,7 +106,7 @@ function drawLetter () {
 
         context.fillStyle = page.darkColor
 
-        if (page.wordLockedIn[positionToChange] == false  && page.totalNumberofPaints > 200)  // make sure letter isn't locked in 
+        if (page.wordLockedIn[positionToChange] == false) // make sure letter isn't locked in 
             context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
 
         context.fillStyle = page.lightColor
