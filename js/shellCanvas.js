@@ -75,9 +75,6 @@ function drawScreen() {  // wrapper that gets called on resize event
 animation()
 function animation (){
     if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
-
-
-
         if (fps > page.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // twice the writing per paint so..
             fps *=.5    // half the fps (which will keep increasing)
@@ -124,8 +121,10 @@ function drawLetter () {
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
 
         if (page.totalNumberofPaints == page.delayBeforeLockingLetters) {// lock letters
+            charactersLockedIn ++   // signal to calling function counter to stop
             page.delayBeforeLockingLetters += Math.floor(Math.random()*30 + 1) // increment next time to lock
-            // cl('locking',page.totalNumberofPaints, page.delayBeforeLockingLetters)
+            cl('locking',page.totalNumberofPaints, page.delayBeforeLockingLetters)
+
         }
 
 
