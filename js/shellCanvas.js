@@ -17,6 +17,7 @@ let page = {   // page global object
     initialFpsIncrementor : 0,
     incrementorIncrementor : 1.3, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
+    delayBetweenLockingLetters : 0,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
     delayBeforeLockingLetters : 130, // how long before starting to seed te word letters
@@ -121,7 +122,7 @@ function drawLetter () {
 
         if (page.totalNumberofPaints >= page.delayBeforeLockingLetters) {// lock letters
             charactersLockedIn ++   // signal to calling function counter to stop
-            page.delayBeforeLockingLetters += Math.floor(Math.random()*10 + 1) // increment next time to lock
+            page.delayBeforeLockingLetters += Math.floor(Math.random()*page.delayBetweenLockingLetters + 1) // increment next time to lock
 
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
             positionToChange = page.randomNoReplacementArray[j]
