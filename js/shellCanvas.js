@@ -76,7 +76,7 @@ animation()
 function animation (){
     if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
 
-        page.totalNumberofPaints ++   // simple overall counter
+
 
         if (fps > page.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // twice the writing per paint so..
@@ -91,7 +91,7 @@ function animation (){
         }, 1000 / fps)
     }
     // cl (charactersLockedIn, page.phraseToDraw.length)
-    cl(page.totalNumberofPaints)
+    // cl(page.totalNumberofPaints)
 }
 
 function drawChosenLetter (positionToChange, letterToInsert) {
@@ -113,8 +113,9 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         }
 }
 
-function drawLetter () {  
+function drawLetter () { 
 
+    page.totalNumberofPaints ++   // simple overall counter
     context.font = `${letterSize}px serif`
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
