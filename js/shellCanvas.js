@@ -122,20 +122,23 @@ function drawLetter () {
         if (page.totalNumberofPaints >= page.delayBeforeLockingLetters) {// lock letters
             charactersLockedIn ++   // signal to calling function counter to stop
             page.delayBeforeLockingLetters += Math.floor(Math.random()*30 + 1) // increment next time to lock
-            // cl('locking',page.totalNumberofPaints, page.delayBeforeLockingLetters)
+            // get random position w/o repeaat
+            let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
+            positionToChange = page.randomNoReplacementArray[j]
+            page.randomNoReplacementArray.splice(j,1)
             page.letterLockedIn[positionToChange] = true
         }
 
         if (page.letterLockedIn[positionToChange] == true)
-            letterToInsert = page.phraseToDraw[positionToChange] // if locked simply redraw the letter!
+            letterToInsert = page.phraseToDraw[positionToChange] // if locked simply swap in the letter!
         drawChosenLetter(positionToChange, letterToInsert)
 
     }   // cycles/paint 'for' loop
 
 }  // drawLetter function
 
-cl(page.randomNoReplacementArray)
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
 
+// randomNoReplacementArray
