@@ -96,18 +96,14 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
         let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
 
-        if (page.letterLockedIn[positionToChange] == false) {// make sure letter isn't locked in 
-            context.fillStyle = page.darkColor
-            context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
-        }
+        context.fillStyle = page.darkColor  // background box color
+        context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
 
         let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
-        if (page.letterLockedIn[positionToChange] == false) {  // make sure letter isn't locked in
-            context.fillStyle = page.lightColor
-            context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
-        }
+        context.fillStyle = page.lightColor
+        context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
 }
 
 function drawLetter () { 
@@ -124,10 +120,12 @@ function drawLetter () {
             charactersLockedIn ++   // signal to calling function counter to stop
             page.delayBeforeLockingLetters += Math.floor(Math.random()*30 + 1) // increment next time to lock
             cl('locking',page.totalNumberofPaints, page.delayBeforeLockingLetters)
-
+            letterToInsert = page.phraseToDraw[positionToChange]
+            page.letterLockedIn[positionToChange] == true
         }
 
-
+        if (page.letterLockedIn[positionToChange] == true)
+            letterToInsert = page.phraseToDraw[positionToChange] // if locked simly redraw the letter!
         drawChosenLetter(positionToChange, letterToInsert)
 
     }   // cycles/paint 'for' loop
