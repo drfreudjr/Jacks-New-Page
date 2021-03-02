@@ -120,9 +120,14 @@ function drawLetter () {
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
 
-            let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
+        let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
+        let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
 
-                let letterToInsert = randomCharacterString(1) // external module call <arg> is length
+        if (page.totalNumberofPaints == page.delayBeforeLockingLetters) {// lock letters
+            page.delayBeforeLockingLetters += Math.floor(Math.random()*30 + 1) // increment next time to lock
+            // cl('locking',page.totalNumberofPaints, page.delayBeforeLockingLetters)
+        }
+
 
         drawChosenLetter(positionToChange, letterToInsert)
 
