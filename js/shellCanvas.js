@@ -96,10 +96,11 @@ function animation (){
 
 function drawLetter () {  
 
+    context.font = `${letterSize}px serif`
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length
-        context.font = `${letterSize}px serif`
+
 
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // move one box away for each position
         let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize)
