@@ -5,7 +5,8 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox',
-    letterLockedIn: [], // stores whether letter from initial word rendered
+    letterLockedIn: [], // stores whether letter from initial word has been rendered
+    randomNoReplacementArray: [],  // array of number positions to use in choosing random PTD position
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1.0,  // how big is the letter relative to box
     startingArraySpotX : 0, // where to draw the whole thing
@@ -27,8 +28,10 @@ let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0  // 
 
-for (let i = 0; i < page.phraseToDraw.length; ++i) // seed letter matching table
-    page.letterLockedIn[i] = false
+for (let i = 0; i < page.phraseToDraw.length; ++i) {
+    page.letterLockedIn[i] = false // seed letter matching table
+    page.randomNoReplacementArray[i] = i
+}
 
 window.onload = function () {           // onload wrapper
                                         
@@ -116,41 +119,23 @@ function drawLetter () {
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
 
-        if (page.totalNumberofPaints == page.delayBeforeLockingLetters) {// lock letters
+        if (page.totalNumberofPaints >= page.delayBeforeLockingLetters) {// lock letters
             charactersLockedIn ++   // signal to calling function counter to stop
             page.delayBeforeLockingLetters += Math.floor(Math.random()*30 + 1) // increment next time to lock
-            cl('locking',page.totalNumberofPaints, page.delayBeforeLockingLetters)
-            letterToInsert = page.phraseToDraw[positionToChange]
-            page.letterLockedIn[positionToChange] == true
+            // cl('locking',page.totalNumberofPaints, page.delayBeforeLockingLetters)
+            page.letterLockedIn[positionToChange] = true
         }
 
         if (page.letterLockedIn[positionToChange] == true)
-            letterToInsert = page.phraseToDraw[positionToChange] // if locked simly redraw the letter!
+            letterToInsert = page.phraseToDraw[positionToChange] // if locked simply redraw the letter!
         drawChosenLetter(positionToChange, letterToInsert)
 
     }   // cycles/paint 'for' loop
 
 }  // drawLetter function
 
+cl(page.randomNoReplacementArray)
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
 
-        // if (global.wordMatchTable[positionToChange] == false) {// see if letter locked in 
-
-// when 107 true, insert letter, then increase delay variable by random amount tehn it should triger again
-
-        // if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {    // start locking letters
-        //     page.delayBeforeLockingLetters += Math.floor(Math.random()*15+1)    // kick the can to the next time
-        //     context.fillStyle = page.darkColor
-        //     charactersLockedIn ++
-        //     let randomWordPosition = null //begin random lock in process
-        //     let placeHolder = true
-        //     while (placeHolder == true)  {  // make sure we get a false/not locked in one
-        //         randomWordPosition = Math.floor(Math.random()*(page.phraseToDraw.length))
-        //         placeHolder = page.wordLockedIn[randomWordPosition]
-        //     }    
-        //     page.wordLockedIn[randomWordPosition] = true
-        //     randomCharacter = page.phraseToDraw[positionToChange]
-        //     cl(randomCharacter)
-        // }
