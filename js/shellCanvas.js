@@ -97,26 +97,27 @@ function animation (){
 function drawLetter () {  
 
     context.font = `${letterSize}px serif`
+
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
+
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length
 
+        let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
+        let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
 
-        let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // move one box away for each position
-        let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize)
+        if (page.wordLockedIn[positionToChange] == false) {// make sure letter isn't locked in 
+            context.fillStyle = page.darkColor
+            context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
+        }
 
-        context.fillStyle = page.darkColor
-
-        if (page.wordLockedIn[positionToChange] == false) // make sure letter isn't locked in 
-            context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize)
-
-        context.fillStyle = page.lightColor
-
-        let xPosition = getCenterXPosition(letterToInsert, stringPlacementX)
+        let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
-        if (page.wordLockedIn[positionToChange] == false)  // make sure letter isn't locked in
+        if (page.wordLockedIn[positionToChange] == false) {  // make sure letter isn't locked in
+            context.fillStyle = page.lightColor
             context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
+        }
     }   // cycles/paint 'for' loop
 }  // drawLetter function
 
