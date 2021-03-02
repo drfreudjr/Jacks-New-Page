@@ -5,7 +5,7 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox',
-    wordLockedIn: [], // stores whether letter from initial word rendered
+    letterLockedIn: [], // stores whether letter from initial word rendered
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1.0,  // how big is the letter relative to box
     startingArraySpotX : 0, // where to draw the whole thing
@@ -28,7 +28,7 @@ let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0  // 
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) // seed letter matching table
-    page.wordLockedIn[i] = false
+    page.letterLockedIn[i] = false
 
 window.onload = function () {           // onload wrapper
                                         
@@ -96,11 +96,10 @@ function animation (){
 
 function drawChosenLetter (positionToChange, letterToInsert) {
 
-
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
         let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
 
-        if (page.wordLockedIn[positionToChange] == false) {// make sure letter isn't locked in 
+        if (page.letterLockedIn[positionToChange] == false) {// make sure letter isn't locked in 
             context.fillStyle = page.darkColor
             context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
         }
@@ -108,7 +107,7 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
-        if (page.wordLockedIn[positionToChange] == false) {  // make sure letter isn't locked in
+        if (page.letterLockedIn[positionToChange] == false) {  // make sure letter isn't locked in
             context.fillStyle = page.lightColor
             context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
         }
@@ -119,13 +118,15 @@ function drawLetter () {
     context.font = `${letterSize}px serif`
 
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
-        let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
-        let letterToInsert = randomCharacterString(1) // external module call <arg> is length
+
+            let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
+
+                let letterToInsert = randomCharacterString(1) // external module call <arg> is length
 
         drawChosenLetter(positionToChange, letterToInsert)
 
-
     }   // cycles/paint 'for' loop
+
 }  // drawLetter function
 
 
