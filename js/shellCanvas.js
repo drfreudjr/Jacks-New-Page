@@ -13,13 +13,13 @@ let page = {   // page global object
     startingArraySpotY :0,
     lightColor : '#ffffff',
     darkColor : '#000000',
-    initialFps : 10,
-    initialFpsIncrementor : 5,
-    incrementorIncrementor : 3, // this controls the acceleration
+    initialFps : 0,
+    initialFpsIncrementor : 0,
+    incrementorIncrementor : 1.3, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
-    delayBeforeLockingLetters : 120, // how long before starting to seed te word letters
+    delayBeforeLockingLetters : 130, // how long before starting to seed te word letters
 }
 
 let letterSize = page.letterToBoxRatio*page.boxSize // set calculated lettersize
@@ -121,7 +121,7 @@ function drawLetter () {
 
         if (page.totalNumberofPaints >= page.delayBeforeLockingLetters) {// lock letters
             charactersLockedIn ++   // signal to calling function counter to stop
-            page.delayBeforeLockingLetters += Math.floor(Math.random()*2 + 1) // increment next time to lock
+            page.delayBeforeLockingLetters += Math.floor(Math.random()*10 + 1) // increment next time to lock
 
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
             positionToChange = page.randomNoReplacementArray[j]
