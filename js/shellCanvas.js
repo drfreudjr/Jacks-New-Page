@@ -94,12 +94,7 @@ function animation (){
     cl(page.totalNumberofPaints)
 }
 
-function drawLetter () {  
-
-    context.font = `${letterSize}px serif`
-
-    for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
-
+function drawRandom () {
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length))
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length
 
@@ -118,6 +113,14 @@ function drawLetter () {
             context.fillStyle = page.lightColor
             context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
         }
+}
+
+function drawLetter () {  
+
+    context.font = `${letterSize}px serif`
+
+    for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
+        drawRandom()
     }   // cycles/paint 'for' loop
 }  // drawLetter function
 
@@ -128,7 +131,6 @@ function drawLetter () {
         // if (global.wordMatchTable[positionToChange] == false) {// see if letter locked in 
 
 // when 107 true, insert letter, then increase delay variable by random amount tehn it should triger again
-
 
         // if (page.totalNumberofPaints > page.delayBeforeLockingLetters) {    // start locking letters
         //     page.delayBeforeLockingLetters += Math.floor(Math.random()*15+1)    // kick the can to the next time
