@@ -5,8 +5,6 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
-    letterLockedIn: [], // array with truth table for whether letter is locked in
-    randomNoReplacementArray: [],  // array used to generate random but non repetitive phraseToDraw
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1.0,  // how big is the letter relative to box
     startingArraySpotX : 0, // where to place the whole thing
@@ -22,6 +20,8 @@ let page = {   // page global object
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
     delayBeforeLockingLetters : 160, // how long before starting to seed te word letters
+    letterLockedIn: [], // array with truth table for whether letter is locked in
+    randomNoReplacementArray: [],  // array used to generate random but non repetitive phraseToDraw
 }
 
 let letterSize = page.letterToBoxRatio*page.boxSize // set calculated lettersize
