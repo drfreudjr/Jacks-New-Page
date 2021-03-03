@@ -74,17 +74,6 @@ function main () {
     lettersAnimation()
 }
 
-function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
-            let metrics = context.measureText(randomCharacter);  
-            let textWidth = metrics.width
-            let centerOfBox = stringPlacementX + (.5*page.boxSize)
-            let xPosition = centerOfBox - (.5*textWidth)
-            return (xPosition)
-}
-
-
-
-
 function lettersAnimation (){
     if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
         if (fps > page.cyclesBeforeOverdrive) { 
@@ -99,6 +88,19 @@ function lettersAnimation (){
         }, 1000 / fps)
     }
 }
+
+
+
+function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
+            let metrics = context.measureText(randomCharacter);  
+            let textWidth = metrics.width
+            let centerOfBox = stringPlacementX + (.5*page.boxSize)
+            let xPosition = centerOfBox - (.5*textWidth)
+            return (xPosition)
+}
+
+
+
 
 
 
