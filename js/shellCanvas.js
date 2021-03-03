@@ -14,12 +14,12 @@ let page = {   // page global object
     darkColor : '#000000',
     initialFps : 2.5,
     initialFpsIncrementor : 0,
-    incrementorIncrementor : 1.5, // this controls the acceleration
+    incrementorIncrementor : 1.8, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
-    delayBetweenLockingLetters : 1.2,
+    delayBetweenLockingLetters : 1.4,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
-    delayBeforeLockingLetters : 160, // how long before starting to seed te word letters
+    delayBeforeLockingLetters : 110, // how long before starting to seed te word letters
     letterLockedIn: [], // array with truth table for whether letter is locked in
     randomNoReplacementArray: [],  // array used to generate random but non repetitive phraseToDraw
 }
@@ -61,10 +61,9 @@ function sizeCanvas () {                // Create or resize
     canvas.height = innerHeight; 
     drawScreen()     
 }
+function drawScreen() {  // wrapper that gets called on resize event
 
 // Enter Page Specific Code here
-
-function drawScreen() {  // wrapper that gets called on resize event
 
 main()
 function main () {
