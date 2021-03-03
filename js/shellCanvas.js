@@ -40,8 +40,6 @@ window.onload = function () {           // onload wrapper
 var canvas;    // Global 2D context reference                            
 var context;   // Global canvas object reference
 
-// // Begin dynamic full screen canvas code
-
 sizeCanvas()                            // create initial canvas
 addEventListener("resize", sizeCanvas); // resize canvas and redraw on window size change
 
@@ -66,7 +64,6 @@ function sizeCanvas () {                // Create or resize
 
 // Enter Page Specific Code here
 
-
 function drawScreen() {  // wrapper that gets called on resize event
 
 main()
@@ -88,13 +85,6 @@ function lettersAnimation (){
         }, 1000 / fps)
     }
 }
-
-
-
-
-
-
-
 
 function drawLetter () { 
 
