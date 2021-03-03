@@ -86,29 +86,22 @@ function lettersAnimation () {
 }
 
 function drawLetter () { 
-
     page.totalNumberofPaints ++   // simple overall counter
     context.font = `${letterSize}px serif`
-
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
-
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
-
         if (page.totalNumberofPaints >= page.delayBeforeLockingLetters) {// lock letters
             charactersLockedIn ++   // signal to calling function counter to stop
             page.delayBeforeLockingLetters += Math.floor(Math.random()*page.delayBetweenLockingLetters + 1) // increment next time to lock
-
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
             positionToChange = page.randomNoReplacementArray[j]
             page.randomNoReplacementArray.splice(j,1)
             page.letterLockedIn[positionToChange] = true
         }
-
         if (page.letterLockedIn[positionToChange] == true)
             letterToInsert = page.phraseToDraw[positionToChange] // if locked simply swap in the letter!
         drawChosenLetter(positionToChange, letterToInsert)
-
     }   // cycles/paint 'for' loop
 
 }  // drawLetter function
