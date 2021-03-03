@@ -84,7 +84,6 @@ function animation (){
             ++ cyclesPerFrame // twice the writing per paint so..
             fps *=.5    // half the fps (which will keep increasing)
         }
-
         setTimeout(function() {
            drawLetter()
             requestAnimationFrame(animation)
@@ -92,8 +91,6 @@ function animation (){
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     }
-    // cl (charactersLockedIn, page.phraseToDraw.length)
-    // cl(page.totalNumberofPaints)
 }
 
 function drawChosenLetter (positionToChange, letterToInsert) {
