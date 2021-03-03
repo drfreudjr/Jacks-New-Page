@@ -5,18 +5,19 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
+    widthPercentage: .7, // how far to stretch animation boxes
     boxSize: 50,        // size of container for letters
-    letterToBoxRatio : 1.0,  // how big is the letter relative to box
+    letterToBoxRatio : 1,  // how big is the letter relative to box
     startingArraySpotX : 0, // where to place the whole thing
     startingArraySpotY :0,
     lightColor : '#ffffff',
-    medColor: '#777777',
+    medColor: '#dddddd',
     darkColor : '#000000',
     initialFps : 2.5,
     initialFpsIncrementor : 0,
     incrementorIncrementor : 1.8, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
-    delayBetweenLockingLetters : 1.4,
+    delayBetweenLockingLetters : 10,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
     delayBeforeLockingLetters : 110, // how long before starting to seed te word letters
@@ -29,6 +30,9 @@ let fps = page.initialFps
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0  // 
+
+let animationWidth = page.widthPercentage*window.innerWidth
+cl(animationWidth)
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
     page.letterLockedIn[i] = false // seed letter matching table
@@ -119,6 +123,7 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         context.fillStyle = page.medColor
         context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
 }
+
 function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
             let metrics = context.measureText(randomCharacter);  
             let textWidth = metrics.width
@@ -126,6 +131,7 @@ function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x 
             let xPosition = centerOfBox - (.5*textWidth)
             return (xPosition)
 }
+
 }   // end drawScreen wrapper
 }   // end onload wrapper
 
