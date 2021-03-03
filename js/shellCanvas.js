@@ -91,14 +91,6 @@ function lettersAnimation (){
 
 
 
-function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
-            let metrics = context.measureText(randomCharacter);  
-            let textWidth = metrics.width
-            let centerOfBox = stringPlacementX + (.5*page.boxSize)
-            let xPosition = centerOfBox - (.5*textWidth)
-            return (xPosition)
-}
-
 
 
 
@@ -145,6 +137,13 @@ function drawChosenLetter (positionToChange, letterToInsert) {
 
         context.fillStyle = page.lightColor
         context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
+}
+function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
+            let metrics = context.measureText(randomCharacter);  
+            let textWidth = metrics.width
+            let centerOfBox = stringPlacementX + (.5*page.boxSize)
+            let xPosition = centerOfBox - (.5*textWidth)
+            return (xPosition)
 }
 
 
