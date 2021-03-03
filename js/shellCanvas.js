@@ -103,7 +103,6 @@ function drawLetter () {
             letterToInsert = page.phraseToDraw[positionToChange] // if locked simply swap in the letter!
         drawChosenLetter(positionToChange, letterToInsert)
     }   // cycles/paint 'for' loop
-
 }  // drawLetter function
 
 function drawChosenLetter (positionToChange, letterToInsert) {
@@ -127,8 +126,6 @@ function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x 
             let xPosition = centerOfBox - (.5*textWidth)
             return (xPosition)
 }
-
-
 }   // end drawScreen wrapper
 }   // end onload wrapper
 
