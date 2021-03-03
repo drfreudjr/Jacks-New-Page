@@ -70,7 +70,7 @@ function main () {
     lettersAnimation()
 }
 
-function lettersAnimation (){
+function lettersAnimation () {
     if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
         if (fps > page.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // twice the writing per paint so..
@@ -124,7 +124,7 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
 
-        context.fillStyle = page.lightColor
+        context.fillStyle = page.medColor
         context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
 }
 function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
