@@ -96,20 +96,7 @@ function lettersAnimation (){
     }
 }
 
-function drawChosenLetter (positionToChange, letterToInsert) {
 
-        let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
-        let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
-
-        context.fillStyle = page.darkColor  // background box color
-        context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
-
-        let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
-        let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
-
-        context.fillStyle = page.lightColor
-        context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
-}
 
 function drawLetter () { 
 
@@ -138,6 +125,21 @@ function drawLetter () {
     }   // cycles/paint 'for' loop
 
 }  // drawLetter function
+
+function drawChosenLetter (positionToChange, letterToInsert) {
+
+        let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
+        let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
+
+        context.fillStyle = page.darkColor  // background box color
+        context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
+
+        let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
+        let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
+
+        context.fillStyle = page.lightColor
+        context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
+}
 
 
 }   // end drawScreen wrapper
