@@ -14,9 +14,9 @@ let page = {   // page global object
     lightColor : '#ffffff',
     medColor: '#777777',
     darkColor : '#000000',
-    initialFps : 0,
+    initialFps : 2.5,
     initialFpsIncrementor : 0,
-    incrementorIncrementor : 1.3, // this controls the acceleration
+    incrementorIncrementor : 1.5, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     delayBetweenLockingLetters : 1.2,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
@@ -40,7 +40,7 @@ window.onload = function () {           // onload wrapper
 var canvas;    // Global 2D context reference                            
 var context;   // Global canvas object reference
 
-// // Begin dynamic fulls screen canvas code
+// // Begin dynamic full screen canvas code
 
 sizeCanvas()                            // create initial canvas
 addEventListener("resize", sizeCanvas); // resize canvas and redraw on window size change
@@ -66,6 +66,14 @@ function sizeCanvas () {                // Create or resize
 
 // Enter Page Specific Code here
 
+
+function drawScreen() {  // wrapper that gets called on resize event
+
+main()
+function main () {
+    lettersAnimation()
+}
+
 function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
             let metrics = context.measureText(randomCharacter);  
             let textWidth = metrics.width
@@ -74,12 +82,8 @@ function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x 
             return (xPosition)
 }
 
-function drawScreen() {  // wrapper that gets called on resize event
 
-main()
-function main () {
-    lettersAnimation()
-}
+
 
 function lettersAnimation (){
     if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
