@@ -50,7 +50,6 @@ function createCanvas () {
     canvas.style.position = "absolute"; 
     canvas.style.left     = "0px";      
     canvas.style.top      = "0px";
-
     document.body.appendChild(canvas);  // Add to document
     return canvas;
 }
@@ -65,7 +64,7 @@ function sizeCanvas () {                // Create or resize
     drawScreen()     
 }
 
-//  // Enter Page Specific Code here
+// Enter Page Specific Code here
 
 function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
             let metrics = context.measureText(randomCharacter);  
