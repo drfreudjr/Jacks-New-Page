@@ -10,7 +10,7 @@ let page = {   // page global object
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1,  // how big is the letter relative to box
     startingArraySpotX : 50, // where to place the whole thing
-    startingArraySpotY :0,
+    startingArraySpotY :null,
     lightColor : '#ffffff',
     medColor: '#dddddd',
     darkColor : '#000000',
@@ -30,7 +30,7 @@ let letterSize = page.letterToBoxRatio*page.boxSize // set calculated lettersize
 let fps = page.initialFps 
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
-let charactersLockedIn = 0  // 
+let charactersLockedIn = 0 
 
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
