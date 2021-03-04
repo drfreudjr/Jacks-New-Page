@@ -14,11 +14,11 @@ let page = {   // page global object
     lightColor : '#ffffff',
     medColor: '#dddddd',
     darkColor : '#000000',
-    initialFps : 2.5,
+    initialFps : 1,
     initialFpsIncrementor : 0,
-    incrementorIncrementor : 2.0, // this controls the acceleration
+    incrementorIncrementor : 1.5 , // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
-    delayBetweenLockingLetters : 7,
+    delayBetweenLockingLetters : 5,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
     delayBeforeLockingLetters : 110, // how long before starting to seed te word letters
