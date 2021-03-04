@@ -5,10 +5,11 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
-    widthPercentage: .7, // how far to stretch animation boxes
+    widthPercentage: .7, // what percentage of screen width to fill
+    verticalPlacement: 2.5,
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1,  // how big is the letter relative to box
-    startingArraySpotX : 0, // where to place the whole thing
+    startingArraySpotX : 50, // where to place the whole thing
     startingArraySpotY :0,
     lightColor : '#ffffff',
     medColor: '#dddddd',
@@ -17,7 +18,7 @@ let page = {   // page global object
     initialFpsIncrementor : 0,
     incrementorIncrementor : 1.8, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
-    delayBetweenLockingLetters : 10,
+    delayBetweenLockingLetters : 7,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
     delayBeforeLockingLetters : 110, // how long before starting to seed te word letters
@@ -112,7 +113,8 @@ function drawLetter () {
 function drawChosenLetter (positionToChange, letterToInsert) {
 
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
-        let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
+        // let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
+        let stringPlacementY = innerHeight/page.verticalPlacement
 
         context.fillStyle = page.darkColor  // background box color
         context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
