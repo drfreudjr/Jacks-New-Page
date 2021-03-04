@@ -64,6 +64,12 @@ function sizeCanvas () {                // Create or resize
 function drawScreen() {  // wrapper that gets called on resize event
 
 // Enter Page Specific Code here
+ letterSize = page.letterToBoxRatio*page.boxSize // reset all this stuff in cse of resize
+ fps = page.initialFps 
+ fpsIncrementor = page.initialFpsIncrementor
+ cyclesPerFrame = page.initialCyclesPerFrame
+ charactersLockedIn = 0 
+
 
 main()
 function main () {
