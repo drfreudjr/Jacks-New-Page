@@ -16,7 +16,7 @@ let page = {   // page global object
     darkColor : '#000000',
     initialFps : 2.5,
     initialFpsIncrementor : 0,
-    incrementorIncrementor : 1.8, // this controls the acceleration
+    incrementorIncrementor : 2.0, // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     delayBetweenLockingLetters : 7,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
@@ -31,9 +31,6 @@ let fps = page.initialFps
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0 
-
-
-
 
 window.onload = function () {           // onload wrapper
                                         
