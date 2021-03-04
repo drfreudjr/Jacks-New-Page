@@ -33,10 +33,7 @@ let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0 
 
 
-for (let i = 0; i < page.phraseToDraw.length; ++i) {
-    page.letterLockedIn[i] = false // seed letter matching table
-    page.randomNoReplacementArray[i] = i
-}
+
 
 window.onload = function () {           // onload wrapper
                                         
@@ -71,6 +68,11 @@ function drawScreen() {  // wrapper that gets called on resize event
 main()
 function main () {
     lettersAnimation()
+}
+
+for (let i = 0; i < page.phraseToDraw.length; ++i) {
+    page.letterLockedIn[i] = false // seed letter matching table
+    page.randomNoReplacementArray[i] = i
 }
 
 function lettersAnimation () {
