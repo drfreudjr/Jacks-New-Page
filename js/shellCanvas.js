@@ -8,6 +8,7 @@ window.onload = function () {           // onload wrapper
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
+    baseFont: 'Courier',
     widthPercentage:   .7, // what percentage of screen width to fill
     verticalPlacement: 2.5, // higher puts the string higher to the stop
     boxSize: 50,        // size of container for letters
@@ -101,7 +102,7 @@ function lettersAnimation () {
 
 function drawLetter () { 
     page.totalNumberofPaints ++   // simple overall counter
-    context.font = `${letterSize}px serif`
+    context.font = `${letterSize}px ${page.baseFont}`
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
@@ -121,7 +122,7 @@ function drawLetter () {
 
 function drawChosenLetter (positionToChange, letterToInsert) {
 
-        let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
+        let stringPlacementX = page.startingArraySpotX+((positionToChange-1)*page.boxSize) // set box position
         let stringPlacementY = innerHeight/page.verticalPlacement
 
         context.fillStyle = page.darkColor  // background box color
