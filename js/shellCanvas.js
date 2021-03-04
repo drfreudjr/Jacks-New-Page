@@ -8,7 +8,7 @@ window.onload = function () {           // onload wrapper
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
-    widthPercentage:   1.2, // what percentage of screen width to fill
+    widthPercentage:   .5, // what percentage of screen width to fill
     verticalPlacement: 2.5, // higher puts the string higher to the stop
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1.0,  // how big is the letter relative to box
@@ -34,6 +34,7 @@ let fps = page.initialFps
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0 
+page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2
 
 
                                         
