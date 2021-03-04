@@ -6,7 +6,7 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
     widthPercentage: .7, // what percentage of screen width to fill
-    verticalPlacement: 2.5,
+    verticalPlacement: 2.5, // higher puts the string higher to the stop
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1,  // how big is the letter relative to box
     startingArraySpotX : 50, // where to place the whole thing
