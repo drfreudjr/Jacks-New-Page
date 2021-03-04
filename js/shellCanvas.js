@@ -32,8 +32,6 @@ let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0  // 
 
-let animationWidth = page.widthPercentage*window.innerWidth
-cl(animationWidth)
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
     page.letterLockedIn[i] = false // seed letter matching table
@@ -113,7 +111,6 @@ function drawLetter () {
 function drawChosenLetter (positionToChange, letterToInsert) {
 
         let stringPlacementX = page.startingArraySpotX+((positionToChange)*page.boxSize) // set box position
-        // let stringPlacementY = page.startingArraySpotY*((positionToChange)*page.boxSize) // move one box away for each position
         let stringPlacementY = innerHeight/page.verticalPlacement
 
         context.fillStyle = page.darkColor  // background box color
