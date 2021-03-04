@@ -69,7 +69,8 @@ function drawScreen() {  // wrapper that gets called on resize event
  fps = page.initialFps 
  fpsIncrementor = page.initialFpsIncrementor
  cyclesPerFrame = page.initialCyclesPerFrame
- charactersLockedIn = 0 
+ charactersLockedIn = 0
+ page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2
 
 
 main()
