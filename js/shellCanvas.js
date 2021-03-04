@@ -8,10 +8,10 @@ window.onload = function () {           // onload wrapper
 
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
-    widthPercentage:   .5, // what percentage of screen width to fill
+    widthPercentage:   .7, // what percentage of screen width to fill
     verticalPlacement: 2.5, // higher puts the string higher to the stop
     boxSize: 50,        // size of container for letters
-    letterToBoxRatio : 1.0,  // how big is the letter relative to box
+    letterToBoxRatio : 1.3,  // how big is the letter relative to box
     startingArraySpotX : 50, // where to place the whole thing
     startingArraySpotY :null,
     lightColor : '#ffffff',
@@ -35,7 +35,7 @@ let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0 
 page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2
-
+page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 
                                         
 var canvas;    // Global 2D context reference                            
@@ -70,7 +70,8 @@ function drawScreen() {  // wrapper that gets called on resize event
  fpsIncrementor = page.initialFpsIncrementor
  cyclesPerFrame = page.initialCyclesPerFrame
  charactersLockedIn = 0
- page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2
+ page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
+ page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 
 
 main()
@@ -124,7 +125,8 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         let stringPlacementY = innerHeight/page.verticalPlacement
 
         context.fillStyle = page.darkColor  // background box color
-        context.fillRect(stringPlacementX, stringPlacementY, page.boxSize, page.boxSize) // erases previous letter
+        context.fillRect(stringPlacementX, stringPlacementY*.5, page.boxSize, page.boxSize*10) // erases previous letter
+                                                                    // Y vertical made bigger to erase letters that exceed box
 
         let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
         let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
