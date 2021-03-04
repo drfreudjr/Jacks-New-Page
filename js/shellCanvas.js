@@ -1,14 +1,17 @@
+
 const cl = console.log;
 import { fontList } from './modules/fontList.js';
 import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
+window.onload = function () {           // onload wrapper
+
 let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
-    widthPercentage: .7, // what percentage of screen width to fill
+    widthPercentage:   1.2, // what percentage of screen width to fill
     verticalPlacement: 2.5, // higher puts the string higher to the stop
     boxSize: 50,        // size of container for letters
-    letterToBoxRatio : 1,  // how big is the letter relative to box
+    letterToBoxRatio : 1.0,  // how big is the letter relative to box
     startingArraySpotX : 50, // where to place the whole thing
     startingArraySpotY :null,
     lightColor : '#ffffff',
@@ -16,7 +19,7 @@ let page = {   // page global object
     darkColor : '#000000',
     initialFps : 1,
     initialFpsIncrementor : 0,
-    incrementorIncrementor : 1.5 , // this controls the acceleration
+    incrementorIncrementor : 1.3 , // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
     delayBetweenLockingLetters : 5,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
@@ -32,7 +35,7 @@ let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0 
 
-window.onload = function () {           // onload wrapper
+
                                         
 var canvas;    // Global 2D context reference                            
 var context;   // Global canvas object reference
