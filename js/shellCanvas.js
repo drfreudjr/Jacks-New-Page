@@ -1,7 +1,7 @@
 
 const cl = console.log;
-import { fontList } from './modules/fontList.js';
-import { dynamicFontSize } from './modules/dynamicFontSize.js';
+// import { fontList } from './modules/fontList.js';
+// import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
 window.onload = function () {           // onload wrapper
@@ -42,27 +42,31 @@ page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 var canvas;    // Global 2D context reference                            
 var context;   // Global canvas object reference
 
-sizeCanvas()                            // create initial canvas
-addEventListener("resize", sizeCanvas); // resize canvas and redraw on window size change
+    addEventListener("resize", sizeCanvas); 
+    sizeCanvas()                            // create initial canvas
 
-function createCanvas () {   
-    const canvas = document.createElement("canvas"); 
-    canvas.style.position = "absolute"; 
-    canvas.style.left     = "0px";      
-    canvas.style.top      = "0px";
-    document.body.appendChild(canvas);  // Add to document
-    return canvas;
-}
+    function sizeCanvas () {                // Create or resize 
 
-function sizeCanvas () {                // Create or resize 
-    if (canvas === undefined) {         
-        canvas = createCanvas();        
-        context = canvas.getContext("2d");  
+        if (canvas === undefined) {         
+            canvas = createCanvas();        
+        }
+
+        function createCanvas () {   
+            const canvas = document.createElement("canvas"); 
+            canvas.style.position = "absolute"; 
+            canvas.style.left     = "0px";      
+            canvas.style.top      = "0px";
+
+            document.body.appendChild(canvas);  // Add to document
+            context = canvas.getContext("2d");  
+            return canvas;
+        }
+
+        canvas.width  = window.innerWidth; 
+        canvas.height = window.innerHeight; 
+        drawScreen()     
     }
-    canvas.width  = innerWidth; 
-    canvas.height = innerHeight; 
-    drawScreen()     
-}
+
 function drawScreen() {  // wrapper that gets called on resize event
 
 // Enter Page Specific Code here
@@ -147,4 +151,3 @@ function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x 
 }   // end drawScreen wrapper
 }   // end onload wrapper
 
-// randomNoReplacementArray
