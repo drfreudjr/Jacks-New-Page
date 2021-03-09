@@ -63,6 +63,7 @@ let fps = page.initialFps
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0
+let charcatersToLockIn = page.phraseToDraw.length
 page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
 page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 
@@ -73,7 +74,7 @@ for (let i = 0; i < page.phraseToDraw.length; ++i) {
 
 lettersAnimation()
 function lettersAnimation () {
-    if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
+    if (charactersLockedIn < charcatersToLockIn) {
         if (fps > page.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // twice the writing per paint so..
             fps *=.5    // half the fps (which will keep increasing)
