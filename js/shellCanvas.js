@@ -10,7 +10,7 @@ let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
     baseFont: 'Courier',
     widthPercentage:   .7, // what percentage of screen width to fill
-    verticalPlacement: 2.5, // higher puts the string higher to the stop
+    verticalPlacementPercentage: .5, 
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1.3,  // how big is the letter relative to box
     startingArraySpotX : 50, // where to place the whole thing
@@ -58,14 +58,14 @@ var context;   // Global canvas object reference
 
 function main() {  // wrapper that gets called on resize event
 
-let fps = page.initialFps 
+const boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
+const letterSize = page.letterToBoxRatio*boxSize // calculated initial values
+const charcatersToLockIn = page.phraseToDraw.length
+let charactersLockedIn = 0
+let fps = page.initialFps                          
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
-let charactersLockedIn = 0
-let charcatersToLockIn = page.phraseToDraw.length
 let startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
-let boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
-let letterSize = page.letterToBoxRatio*boxSize // calculated initial values
 context.font = `${letterSize}px ${page.baseFont}`
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
@@ -111,7 +111,7 @@ function drawLetter () {
 function drawChosenLetter (positionToChange, letterToInsert) {
 
         let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
-        let stringPlacementY = innerHeight/page.verticalPlacement
+        let stringPlacementY = innerHeight*page.verticalPlacementPercentage
 
         context.fillStyle = page.darkColor  // background box color
         context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
