@@ -1,4 +1,3 @@
-
 const cl = console.log;
 // import { fontList } from './modules/fontList.js';
 // import { dynamicFontSize } from './modules/dynamicFontSize.js';
@@ -6,7 +5,7 @@ import { randomCharacterString } from './modules/randomCharacterString.js' // ar
 
 window.onload = function () {           // onload wrapper
 
-let page = {   // page global object
+let flickerAnim = {   // flickerAnim global object
     phraseToDraw : 'Jack Wilcox Productions',
     baseFont: 'Courier',
     widthPercentage:   .7, // what percentage of screen width to fill
@@ -56,52 +55,52 @@ var context;   // Global canvas object reference
 
 function main() {  // wrapper that gets called on resize event
 
-const boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
-const letterSize = page.letterToBoxRatio*boxSize // calculated initial values
-const charcatersToLockIn = page.phraseToDraw.length
+const boxSize = flickerAnim.widthPercentage*innerWidth/flickerAnim.phraseToDraw.length
+const letterSize = flickerAnim.letterToBoxRatio*boxSize // calculated initial values
+const charcatersToLockIn = flickerAnim.phraseToDraw.length
 let charactersLockedIn = 0
-let fps = page.initialFps                          
-let fpsIncrementor = page.initialFpsIncrementor
-let cyclesPerFrame = page.initialCyclesPerFrame
-let startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
-context.font = `${letterSize}px ${page.baseFont}`
+let fps = flickerAnim.initialFps                          
+let fpsIncrementor = flickerAnim.initialFpsIncrementor
+let cyclesPerFrame = flickerAnim.initialCyclesPerFrame
+let startingArraySpotX = (1-flickerAnim.widthPercentage)*innerWidth/2*1.4
+context.font = `${letterSize}px ${flickerAnim.baseFont}`
 
-for (let i = 0; i < page.phraseToDraw.length; ++i) {
-    page.letterLockedIn[i] = false // seed letter matching table
-    page.randomNoReplacementArray[i] = i
+for (let i = 0; i < flickerAnim.phraseToDraw.length; ++i) {
+    flickerAnim.letterLockedIn[i] = false // seed letter matching table
+    flickerAnim.randomNoReplacementArray[i] = i
 }
 
 lettersAnimation()
 function lettersAnimation () {
     if (charactersLockedIn < charcatersToLockIn) {
-        if (fps > page.cyclesBeforeOverdrive) { 
+        if (fps > flickerAnim.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // draw multiple cycles per render
             fps *=.5    // lower the fps to avoid too sudden increase
         }
         setTimeout(function() {
            drawLetter()
             requestAnimationFrame(lettersAnimation)
-            fpsIncrementor +=page.incrementorIncrementor   // increase the increaser each time thru to get acceleration
+            fpsIncrementor +=flickerAnim.incrementorIncrementor   // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     }
 }
 
 function drawLetter () { 
-    page.totalNumberofPaints ++   // simple overall counter
+    flickerAnim.totalNumberofPaints ++   // simple overall counter
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
-        let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
+        let positionToChange = (Math.floor(Math.random()*flickerAnim.phraseToDraw.length)) //default random
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
-        if (page.totalNumberofPaints >= page.numberPaintsBeforeNextLock) {// time to a lock letter!
-            page.numberPaintsBeforeNextLock += Math.floor(Math.random()*page.maximumDelayBetweenLetterLocks + 1) // increment next time to lock
+        if (flickerAnim.totalNumberofPaints >= flickerAnim.numberPaintsBeforeNextLock) {// time to a lock letter!
+            flickerAnim.numberPaintsBeforeNextLock += Math.floor(Math.random()*flickerAnim.maximumDelayBetweenLetterLocks + 1) // increment next time to lock
             charactersLockedIn ++  
-            let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
-            positionToChange = page.randomNoReplacementArray[j]
-            page.randomNoReplacementArray.splice(j,1)   // remove the chosen array member
-            page.letterLockedIn[positionToChange] = true // indicate locked in
+            let j = Math.floor(Math.random()*flickerAnim.randomNoReplacementArray.length)
+            positionToChange = flickerAnim.randomNoReplacementArray[j]
+            flickerAnim.randomNoReplacementArray.splice(j,1)   // remove the chosen array member
+            flickerAnim.letterLockedIn[positionToChange] = true // indicate locked in
         }
-        if (page.letterLockedIn[positionToChange] == true)
-            letterToInsert = page.phraseToDraw[positionToChange] // swap in locked letter
+        if (flickerAnim.letterLockedIn[positionToChange] == true)
+            letterToInsert = flickerAnim.phraseToDraw[positionToChange] // swap in locked letter
         drawChosenLetter(positionToChange, letterToInsert)
     }   
 } 
@@ -109,9 +108,9 @@ function drawLetter () {
 function drawChosenLetter (positionToChange, letterToInsert) {
 
         let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
-        let stringPlacementY = innerHeight*page.verticalPlacementPercentage
+        let stringPlacementY = innerHeight*flickerAnim.verticalPlacementPercentage
 
-        context.fillStyle = page.darkColor  // background box color
+        context.fillStyle = flickerAnim.darkColor  // background box color
             // Y vertical made bigger to erase partular letters that exceed box size
         context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
                                                                     
@@ -119,7 +118,7 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         let xPosition = getCenterXPosition(letterToInsert, stringPlacementX, boxSize) // position letter in square
         let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
 
-        context.fillStyle = page.medColor
+        context.fillStyle = flickerAnim.medColor
         context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
 }
 
