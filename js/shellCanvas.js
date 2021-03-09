@@ -10,11 +10,9 @@ let page = {   // page global object
     phraseToDraw : 'Jack Wilcox Productions',
     baseFont: 'Courier',
     widthPercentage:   .7, // what percentage of screen width to fill
-    verticalPlacementPercentage: .5, 
+    verticalPlacementPercentage: .4, 
     boxSize: 50,        // size of container for letters
     letterToBoxRatio : 1.3,  // how big is the letter relative to box
-    startingArraySpotX : 50, // where to place the whole thing
-    startingArraySpotY :null,
     lightColor : '#ffffff',
     medColor: '#dddddd',
     darkColor : '#000000',
@@ -114,19 +112,19 @@ function drawChosenLetter (positionToChange, letterToInsert) {
         let stringPlacementY = innerHeight*page.verticalPlacementPercentage
 
         context.fillStyle = page.darkColor  // background box color
+            // Y vertical made bigger to erase partular letters that exceed box size
         context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
-                                                                    // Y vertical made bigger to erase letters that exceed box
+                                                                    
 
-        let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
+        let xPosition = getCenterXPosition(letterToInsert, stringPlacementX, boxSize) // position letter in square
         let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
 
         context.fillStyle = page.medColor
         context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
 }
 
-function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
-            let metrics = context.measureText(randomCharacter);  
-            let textWidth = metrics.width
+function getCenterXPosition (randomCharacter, stringPlacementX, boxSize) {  // returns x position to draw letter in box
+            let textWidth = context.measureText(randomCharacter).width
             let centerOfBox = stringPlacementX + (.5*boxSize)
             let xPosition = centerOfBox - (.5*textWidth)
             return (xPosition)
