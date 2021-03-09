@@ -64,7 +64,7 @@ let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0
 let charcatersToLockIn = page.phraseToDraw.length
-page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
+let startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
 page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 context.font = `${letterSize}px ${page.baseFont}`
 
@@ -94,7 +94,7 @@ function drawLetter () {
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
-        if (page.totalNumberofPaints >= page.numberPaintsBeforeNextLock) {// lock letter
+        if (page.totalNumberofPaints >= page.numberPaintsBeforeNextLock) {// time to a lock letter!
             page.numberPaintsBeforeNextLock += Math.floor(Math.random()*page.maximumDelayBetweenLetterLocks + 1) // increment next time to lock
             charactersLockedIn ++  
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
@@ -110,7 +110,7 @@ function drawLetter () {
 
 function drawChosenLetter (positionToChange, letterToInsert) {
 
-        let stringPlacementX = page.startingArraySpotX+((positionToChange-1)*page.boxSize) // set box position
+        let stringPlacementX = startingArraySpotX+((positionToChange-1)*page.boxSize) // set box position
         let stringPlacementY = innerHeight/page.verticalPlacement
 
         context.fillStyle = page.darkColor  // background box color
