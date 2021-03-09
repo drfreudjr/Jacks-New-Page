@@ -58,14 +58,14 @@ var context;   // Global canvas object reference
 
 function main() {  // wrapper that gets called on resize event
 
-let letterSize = page.letterToBoxRatio*page.boxSize // calculated initial values
 let fps = page.initialFps 
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
 let charactersLockedIn = 0
 let charcatersToLockIn = page.phraseToDraw.length
 let startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
-page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
+let boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
+let letterSize = page.letterToBoxRatio*boxSize // calculated initial values
 context.font = `${letterSize}px ${page.baseFont}`
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
@@ -110,15 +110,15 @@ function drawLetter () {
 
 function drawChosenLetter (positionToChange, letterToInsert) {
 
-        let stringPlacementX = startingArraySpotX+((positionToChange-1)*page.boxSize) // set box position
+        let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
         let stringPlacementY = innerHeight/page.verticalPlacement
 
         context.fillStyle = page.darkColor  // background box color
-        context.fillRect(stringPlacementX, stringPlacementY*.5, page.boxSize, page.boxSize*10) // erases previous letter
+        context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
                                                                     // Y vertical made bigger to erase letters that exceed box
 
         let xPosition = getCenterXPosition(letterToInsert, stringPlacementX) // position letter in square
-        let yPosition = stringPlacementY + (.77*page.boxSize) // hacky center letter vertically
+        let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
 
         context.fillStyle = page.medColor
         context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
@@ -127,7 +127,7 @@ function drawChosenLetter (positionToChange, letterToInsert) {
 function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x position to draw letter in box
             let metrics = context.measureText(randomCharacter);  
             let textWidth = metrics.width
-            let centerOfBox = stringPlacementX + (.5*page.boxSize)
+            let centerOfBox = stringPlacementX + (.5*boxSize)
             let xPosition = centerOfBox - (.5*textWidth)
             return (xPosition)
 }
