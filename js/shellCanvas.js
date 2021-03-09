@@ -22,7 +22,7 @@ let page = {   // page global object
     initialFpsIncrementor : 0,
     incrementorIncrementor : 1.3 , // this controls the acceleration
     initialCyclesPerFrame : 1,  // how many letters to draw per paint
-    delayBetweenLockingLetters : 5,
+    maximumDelayBetweenLetterLocks : 5,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
     numberPaintsBeforeNextLock : 110, // how long before starting to seed te word letters
@@ -94,9 +94,9 @@ function drawLetter () {
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
-        if (page.totalNumberofPaints >= page.numberPaintsBeforeNextLock) {// lock letters
-            charactersLockedIn ++   // signal to calling function counter to stop
-            page.numberPaintsBeforeNextLock += Math.floor(Math.random()*page.delayBetweenLockingLetters + 1) // increment next time to lock
+        if (page.totalNumberofPaints >= page.numberPaintsBeforeNextLock) {// lock letter
+            page.numberPaintsBeforeNextLock += Math.floor(Math.random()*page.maximumDelayBetweenLetterLocks + 1) // increment next time to lock
+            charactersLockedIn ++  
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
             positionToChange = page.randomNoReplacementArray[j]
             page.randomNoReplacementArray.splice(j,1)
