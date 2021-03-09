@@ -64,10 +64,10 @@ var context;   // Global canvas object reference
 
         canvas.width  = window.innerWidth; 
         canvas.height = window.innerHeight; 
-        drawScreen()     
+        main()     
     }
 
-function drawScreen() {  // wrapper that gets called on resize event
+function main() {  // wrapper that gets called on resize event
 
 // Enter Page Specific Code here
  letterSize = page.letterToBoxRatio*page.boxSize // reset all this stuff in cse of resize
@@ -79,10 +79,7 @@ function drawScreen() {  // wrapper that gets called on resize event
  page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 
 
-main()
-function main () {
-    lettersAnimation()
-}
+lettersAnimation()
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
     page.letterLockedIn[i] = false // seed letter matching table
