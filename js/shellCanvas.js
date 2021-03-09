@@ -25,7 +25,7 @@ let page = {   // page global object
     delayBetweenLockingLetters : 5,
     cyclesBeforeOverdrive : 500, // when to increase letters/paint
     totalNumberofPaints : 0,  // keep track of total refreshes as a timer of sorts
-    delayBeforeLockingLetters : 110, // how long before starting to seed te word letters
+    numberPaintsBeforeNextLock : 110, // how long before starting to seed te word letters
     letterLockedIn: [], // array with truth table for whether letter is locked in
     randomNoReplacementArray: [],  // array used to generate random but non repetitive phraseToDraw
 }
@@ -66,6 +66,7 @@ let charactersLockedIn = 0
 let charcatersToLockIn = page.phraseToDraw.length
 page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
 page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
+context.font = `${letterSize}px ${page.baseFont}`
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
     page.letterLockedIn[i] = false // seed letter matching table
@@ -76,8 +77,8 @@ lettersAnimation()
 function lettersAnimation () {
     if (charactersLockedIn < charcatersToLockIn) {
         if (fps > page.cyclesBeforeOverdrive) { 
-            ++ cyclesPerFrame // twice the writing per paint so..
-            fps *=.5    // half the fps (which will keep increasing)
+            ++ cyclesPerFrame // draw multiple cycles per render
+            fps *=.5    // lower the fps to avoid too sudden increase
         }
         setTimeout(function() {
            drawLetter()
@@ -90,13 +91,12 @@ function lettersAnimation () {
 
 function drawLetter () { 
     page.totalNumberofPaints ++   // simple overall counter
-    context.font = `${letterSize}px ${page.baseFont}`
     for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
         let positionToChange = (Math.floor(Math.random()*page.phraseToDraw.length)) //default random
         let letterToInsert = randomCharacterString(1) // external module call <arg> is length                
-        if (page.totalNumberofPaints >= page.delayBeforeLockingLetters) {// lock letters
+        if (page.totalNumberofPaints >= page.numberPaintsBeforeNextLock) {// lock letters
             charactersLockedIn ++   // signal to calling function counter to stop
-            page.delayBeforeLockingLetters += Math.floor(Math.random()*page.delayBetweenLockingLetters + 1) // increment next time to lock
+            page.numberPaintsBeforeNextLock += Math.floor(Math.random()*page.delayBetweenLockingLetters + 1) // increment next time to lock
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
             positionToChange = page.randomNoReplacementArray[j]
             page.randomNoReplacementArray.splice(j,1)
