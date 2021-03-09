@@ -35,9 +35,7 @@ var context;   // Global canvas object reference
 
     addEventListener("resize", sizeCanvas); 
     sizeCanvas()                            // create initial canvas
-
     function sizeCanvas () {                // Create or resize 
-
         if (canvas === undefined) {         
             canvas = createCanvas();        
         }
@@ -60,7 +58,7 @@ var context;   // Global canvas object reference
 
 function main() {  // wrapper that gets called on resize event
 
-let letterSize = page.letterToBoxRatio*page.boxSize // reset all this stuff in cse of resize
+let letterSize = page.letterToBoxRatio*page.boxSize // calculated initial values
 let fps = page.initialFps 
 let fpsIncrementor = page.initialFpsIncrementor
 let cyclesPerFrame = page.initialCyclesPerFrame
