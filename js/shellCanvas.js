@@ -29,15 +29,6 @@ let page = {   // page global object
     letterLockedIn: [], // array with truth table for whether letter is locked in
     randomNoReplacementArray: [],  // array used to generate random but non repetitive phraseToDraw
 }
-
-let letterSize = page.letterToBoxRatio*page.boxSize // set calculated lettersize
-let fps = page.initialFps 
-let fpsIncrementor = page.initialFpsIncrementor
-let cyclesPerFrame = page.initialCyclesPerFrame
-let charactersLockedIn = 0 
-page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2
-page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
-
                                         
 var canvas;    // Global 2D context reference                            
 var context;   // Global canvas object reference
@@ -69,11 +60,11 @@ var context;   // Global canvas object reference
 
 function main() {  // wrapper that gets called on resize event
 
-letterSize = page.letterToBoxRatio*page.boxSize // reset all this stuff in cse of resize
-fps = page.initialFps 
-fpsIncrementor = page.initialFpsIncrementor
-cyclesPerFrame = page.initialCyclesPerFrame
-charactersLockedIn = 0
+let letterSize = page.letterToBoxRatio*page.boxSize // reset all this stuff in cse of resize
+let fps = page.initialFps 
+let fpsIncrementor = page.initialFpsIncrementor
+let cyclesPerFrame = page.initialCyclesPerFrame
+let charactersLockedIn = 0
 page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
 page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 
@@ -144,4 +135,3 @@ function getCenterXPosition (randomCharacter, stringPlacementX) {  // returns x 
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
-
