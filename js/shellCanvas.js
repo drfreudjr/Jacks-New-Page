@@ -69,23 +69,20 @@ var context;   // Global canvas object reference
 
 function main() {  // wrapper that gets called on resize event
 
-// Enter Page Specific Code here
- letterSize = page.letterToBoxRatio*page.boxSize // reset all this stuff in cse of resize
- fps = page.initialFps 
- fpsIncrementor = page.initialFpsIncrementor
- cyclesPerFrame = page.initialCyclesPerFrame
- charactersLockedIn = 0
- page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
- page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
-
-
-lettersAnimation()
+letterSize = page.letterToBoxRatio*page.boxSize // reset all this stuff in cse of resize
+fps = page.initialFps 
+fpsIncrementor = page.initialFpsIncrementor
+cyclesPerFrame = page.initialCyclesPerFrame
+charactersLockedIn = 0
+page.startingArraySpotX = (1-page.widthPercentage)*innerWidth/2*1.4
+page.boxSize = page.widthPercentage*innerWidth/page.phraseToDraw.length
 
 for (let i = 0; i < page.phraseToDraw.length; ++i) {
     page.letterLockedIn[i] = false // seed letter matching table
     page.randomNoReplacementArray[i] = i
 }
 
+lettersAnimation()
 function lettersAnimation () {
     if (charactersLockedIn <page.phraseToDraw.length) { // keep drawing until last lockInLetter
         if (fps > page.cyclesBeforeOverdrive) { 
