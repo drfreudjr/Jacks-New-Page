@@ -99,14 +99,14 @@ function drawLetter () {
             charactersLockedIn ++  
             let j = Math.floor(Math.random()*page.randomNoReplacementArray.length)
             positionToChange = page.randomNoReplacementArray[j]
-            page.randomNoReplacementArray.splice(j,1)
-            page.letterLockedIn[positionToChange] = true
+            page.randomNoReplacementArray.splice(j,1)   // remove the chosen array member
+            page.letterLockedIn[positionToChange] = true // indicate locked in
         }
         if (page.letterLockedIn[positionToChange] == true)
-            letterToInsert = page.phraseToDraw[positionToChange] // if locked simply swap in the letter!
+            letterToInsert = page.phraseToDraw[positionToChange] // swap in locked letter
         drawChosenLetter(positionToChange, letterToInsert)
-    }   // cycles/paint 'for' loop
-}  // drawLetter function
+    }   
+} 
 
 function drawChosenLetter (positionToChange, letterToInsert) {
 
