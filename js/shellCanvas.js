@@ -1,9 +1,9 @@
 const cl = console.log;
 // import { fontList } from './modules/fontList.js';
 // import { dynamicFontSize } from './modules/dynamicFontSize.js';
+import { flickerAnim} from './modules/flickerAnim.js' // object with flicker parameters
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
-import { flickerAnim} from './modules/flickerAnim.js' // object with letter parameters
-import { getCenterXPosition} from './modules/getCenterXPosition.js' // object with letter parameters
+import { getCenterXPosition} from './modules/getCenterXPosition.js' // gets hoizontal position for each letter
 
 window.onload = function () {           // onload wrapper
                                         
