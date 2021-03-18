@@ -56,26 +56,25 @@ function getCenterXPosition (randomCharacter, stringPlacementX, boxSize) {  // r
     return (xPosition)
 }  
 
-function lettersAnimation () {
-    function drawLetter () { 
-        function drawChosenLetter (positionToChange, letterToInsert) {
+function drawChosenLetter (positionToChange, letterToInsert) {
+    let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
+    let stringPlacementY = innerHeight*flickerAnim.verticalPlacementPercentage
 
-
-
-          let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
-          let stringPlacementY = innerHeight*flickerAnim.verticalPlacementPercentage
-
-          context.fillStyle = flickerAnim.darkColor  // background box color
-              // Y vertical made bigger to erase partular letters that exceed box size
-         context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
+    context.fillStyle = flickerAnim.darkColor  // background box color
+    // Y vertical made bigger to erase partular letters that exceed box size
+    context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
                                                                     
 
-          let xPosition = getCenterXPosition(letterToInsert, stringPlacementX, boxSize) // position letter in square
-          let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
+    let xPosition = getCenterXPosition(letterToInsert, stringPlacementX, boxSize) // position letter in square
+    let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
 
-          context.fillStyle = flickerAnim.medColor
-           context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
-       }
+    context.fillStyle = flickerAnim.medColor
+    context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
+}
+
+function lettersAnimation () {
+    function drawLetter () { 
+
 
        flickerAnim.totalNumberofPaints ++   // simple overall counter
        for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
