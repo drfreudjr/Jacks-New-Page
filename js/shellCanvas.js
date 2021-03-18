@@ -3,8 +3,7 @@ const cl = console.log;
 // import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 
-textAnim()
-function textAnim() {
+
 
 window.onload = function () {           // onload wrapper
 
@@ -137,5 +136,3 @@ function lettersAnimation () {
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
-
-}   // end textAnim
