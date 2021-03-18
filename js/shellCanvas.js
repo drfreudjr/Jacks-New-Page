@@ -10,7 +10,7 @@ window.onload = function () {           // onload wrapper
 var canvas;    // Global 2D context reference                            
 var context;   // Global canvas object reference
 
-    addEventListener("resize", sizeCanvas); 
+addEventListener("resize", sizeCanvas); 
     sizeCanvas()                            // create initial canvas
     function sizeCanvas () {                // Create or resize 
         if (canvas === undefined) {         
@@ -49,13 +49,6 @@ for (let i = 0; i < flickerAnim.phraseToDraw.length; ++i) {
     flickerAnim.letterLockedIn[i] = false // seed letter matching table
     flickerAnim.randomNoReplacementArray[i] = i
 }
-
-// function getCenterXPosition (letterToInsert, stringPlacementX, boxSize, textWidth) {  // returns x position to draw letter in box
-//     // let textWidth = context.measureText(letterToInsert).width
-//     let centerOfBox = stringPlacementX + (.5*boxSize)
-//     let xPosition = centerOfBox - (.5*textWidth)
-//     return (xPosition)
-// }  
 
 function drawChosenLetter (positionToChange, letterToInsert) {
     let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
