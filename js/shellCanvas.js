@@ -4,7 +4,6 @@ const cl = console.log;
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 import { flickerAnim} from './modules/flickerAnim.js' // object with letter parameters
 
-
 window.onload = function () {           // onload wrapper
                                         
 var canvas;    // Global 2D context reference                            
@@ -50,17 +49,18 @@ for (let i = 0; i < flickerAnim.phraseToDraw.length; ++i) {
     flickerAnim.randomNoReplacementArray[i] = i
 }
 
-lettersAnimation()
+function getCenterXPosition (randomCharacter, stringPlacementX, boxSize) {  // returns x position to draw letter in box
+    let textWidth = context.measureText(randomCharacter).width
+    let centerOfBox = stringPlacementX + (.5*boxSize)
+    let xPosition = centerOfBox - (.5*textWidth)
+    return (xPosition)
+}  
+
 function lettersAnimation () {
     function drawLetter () { 
         function drawChosenLetter (positionToChange, letterToInsert) {
 
-            function getCenterXPosition (randomCharacter, stringPlacementX, boxSize) {  // returns x position to draw letter in box
-               let textWidth = context.measureText(randomCharacter).width
-               let centerOfBox = stringPlacementX + (.5*boxSize)
-               let xPosition = centerOfBox - (.5*textWidth)
-              return (xPosition)
-           }  
+
 
           let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
           let stringPlacementY = innerHeight*flickerAnim.verticalPlacementPercentage
@@ -111,6 +111,9 @@ function lettersAnimation () {
 }
 
 lettersAnimation()
+cl('here')
+// flickerAnim.phraseToDraw = "Presents"
+// lettersAnimation()
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
