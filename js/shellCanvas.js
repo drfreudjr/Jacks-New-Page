@@ -51,16 +51,16 @@ for (let i = 0; i < flickerAnim.phraseToDraw.length; ++i) {
 }
 
 function drawChosenLetter (positionToChange, letterToInsert) {
-    let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
-    let stringPlacementY = innerHeight*flickerAnim.verticalPlacementPercentage
+    let boxPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
+    let boxPlacementY = innerHeight*flickerAnim.verticalPlacementPercentage
 
     context.fillStyle = flickerAnim.darkColor  // background box color
     // Y vertical made bigger to erase partular letters that exceed box size
-    context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
+    context.fillRect(boxPlacementX, boxPlacementY*.5, boxSize, boxSize*10) // erases previous letter
                                                                     
     let textWidth = context.measureText(letterToInsert).width
-    let xPosition = getCenterXPosition(letterToInsert, stringPlacementX, boxSize, textWidth) // position letter in square
-    let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
+    let xPosition = getCenterXPosition(letterToInsert, boxPlacementX, boxSize, textWidth) // position letter in square
+    let yPosition = boxPlacementY + (.77*boxSize) // hacky center letter vertically
 
     context.fillStyle = flickerAnim.medColor
     context.fillText (letterToInsert, xPosition, yPosition) // draw the damn thing
