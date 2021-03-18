@@ -3,6 +3,7 @@ const cl = console.log;
 // import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 import { flickerAnim} from './modules/flickerAnim.js' // object with letter parameters
+import { getCenterXPosition} from './modules/getCenterXPosition.js' // object with letter parameters
 
 window.onload = function () {           // onload wrapper
                                         
@@ -49,12 +50,12 @@ for (let i = 0; i < flickerAnim.phraseToDraw.length; ++i) {
     flickerAnim.randomNoReplacementArray[i] = i
 }
 
-function getCenterXPosition (letterToInsert, stringPlacementX, boxSize, textWidth) {  // returns x position to draw letter in box
-    // let textWidth = context.measureText(letterToInsert).width
-    let centerOfBox = stringPlacementX + (.5*boxSize)
-    let xPosition = centerOfBox - (.5*textWidth)
-    return (xPosition)
-}  
+// function getCenterXPosition (letterToInsert, stringPlacementX, boxSize, textWidth) {  // returns x position to draw letter in box
+//     // let textWidth = context.measureText(letterToInsert).width
+//     let centerOfBox = stringPlacementX + (.5*boxSize)
+//     let xPosition = centerOfBox - (.5*textWidth)
+//     return (xPosition)
+// }  
 
 function drawChosenLetter (positionToChange, letterToInsert) {
     let stringPlacementX = startingArraySpotX+((positionToChange-1)*boxSize) // set box position
