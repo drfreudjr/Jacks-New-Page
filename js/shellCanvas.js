@@ -49,8 +49,8 @@ for (let i = 0; i < flickerAnim.phraseToDraw.length; ++i) {
     flickerAnim.randomNoReplacementArray[i] = i
 }
 
-function getCenterXPosition (letterToInsert, stringPlacementX, boxSize) {  // returns x position to draw letter in box
-    let textWidth = context.measureText(letterToInsert).width
+function getCenterXPosition (letterToInsert, stringPlacementX, boxSize, textWidth) {  // returns x position to draw letter in box
+    // let textWidth = context.measureText(letterToInsert).width
     let centerOfBox = stringPlacementX + (.5*boxSize)
     let xPosition = centerOfBox - (.5*textWidth)
     return (xPosition)
@@ -64,8 +64,8 @@ function drawChosenLetter (positionToChange, letterToInsert) {
     // Y vertical made bigger to erase partular letters that exceed box size
     context.fillRect(stringPlacementX, stringPlacementY*.5, boxSize, boxSize*10) // erases previous letter
                                                                     
-
-    let xPosition = getCenterXPosition(letterToInsert, stringPlacementX, boxSize) // position letter in square
+    let textWidth = context.measureText(letterToInsert).width
+    let xPosition = getCenterXPosition(letterToInsert, stringPlacementX, boxSize, textWidth) // position letter in square
     let yPosition = stringPlacementY + (.77*boxSize) // hacky center letter vertically
 
     context.fillStyle = flickerAnim.medColor
