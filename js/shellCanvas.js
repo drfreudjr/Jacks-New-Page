@@ -110,7 +110,7 @@ function lettersAnimation () {
     }
 }
 
-
+lettersAnimation()
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
