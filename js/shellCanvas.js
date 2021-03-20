@@ -11,8 +11,9 @@ var canvas;    // Global 2D context reference
 var context;   // Global canvas object reference
 
 addEventListener("resize", sizeCanvas); 
-    sizeCanvas()                            // create initial canvas
-    function sizeCanvas () {                // Create or resize 
+
+sizeCanvas()                            // create initial canvas
+function sizeCanvas () {                // Create or resize 
         if (canvas === undefined) {         
             canvas = createCanvas();        
         }
