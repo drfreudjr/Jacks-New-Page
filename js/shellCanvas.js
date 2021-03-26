@@ -38,7 +38,7 @@ function main() {  // wrapper that gets called on resize event
 
 const boxSize = flickerAnim.widthPercentage*innerWidth/flickerAnim.phraseToDraw.length  // dynamic resize parameters
 const letterSize = flickerAnim.letterToBoxRatio*boxSize // calculated initial values
-const charcatersToLockIn = flickerAnim.phraseToDraw.length
+const charactersToLockIn = flickerAnim.phraseToDraw.length
 let charactersLockedIn = 0
 let fps = flickerAnim.initialFps                          
 let fpsIncrementor = flickerAnim.initialFpsIncrementor
@@ -90,13 +90,14 @@ function lettersAnimation () {
 } 
 
 
-    if (charactersLockedIn < charcatersToLockIn) {
+    if (charactersLockedIn < charactersToLockIn) {
         if (fps > flickerAnim.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // draw multiple cycles per render
             fps *=.5    // lower the fps to avoid too sudden increase
         }
         setTimeout(function() {
            drawLetter()
+            // if 
             requestAnimationFrame(lettersAnimation)
             fpsIncrementor +=flickerAnim.incrementorIncrementor   // increase the increaser each time thru to get acceleration
             fps += fpsIncrementor   // basic speeding up replacement speed 
