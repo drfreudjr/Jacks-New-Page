@@ -88,8 +88,6 @@ function lettersAnimation () {
            drawChosenLetter(positionToChange, letterToInsert)
         }   
 } 
-
-
     if (charactersLockedIn < charactersToLockIn) {
         if (fps > flickerAnim.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // draw multiple cycles per render
@@ -106,9 +104,6 @@ function lettersAnimation () {
 }
 
 lettersAnimation()
-cl('here')
-// flickerAnim.phraseToDraw = "Presents"
-// lettersAnimation()
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
