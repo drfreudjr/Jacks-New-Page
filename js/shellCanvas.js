@@ -86,7 +86,7 @@ function lettersAnimation () {
            drawChosenLetter(positionToChange, letterToInsert)
     }   
 } 
-    if (charactersLockedIn < charactersToLockIn) {
+    if (charactersLockedIn < charactersToLockIn) { 
         if (fps > flickerAnim.cyclesBeforeOverdrive) { 
             ++ cyclesPerFrame // draw multiple cycles per render
             fps *=.5    // lower the fps to avoid too sudden increase
@@ -100,13 +100,18 @@ function lettersAnimation () {
         }, 1000 / fps)
     }
     else
-    cl('here')  // WRITE NEW CODE HERE!!!!! YAH!
+        {
+        fadeOut()  // WRITE NEW CODE HERE!!!!! YAH!
+        }
 }
 
 lettersAnimation()
-// cl('here')
-// flickerAnim.phraseToDraw = "Presents"
-// lettersAnimation()
+
+function fadeOut (){
+    cl('welcome to hell')
+}
+
+
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
