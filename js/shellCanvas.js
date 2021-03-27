@@ -69,8 +69,6 @@ function drawChosenLetter (positionToChange, letterToInsert) {
 
 function lettersAnimation () {
     function drawLetter () { 
-
-
        flickerAnim.totalNumberofPaints ++   // simple overall counter
        for (let i = 0; i < cyclesPerFrame; ++i) { // letters to change per paint
             let positionToChange = (Math.floor(Math.random()*flickerAnim.phraseToDraw.length)) //default random
@@ -86,7 +84,7 @@ function lettersAnimation () {
           if (flickerAnim.letterLockedIn[positionToChange] == true)
                letterToInsert = flickerAnim.phraseToDraw[positionToChange] // swap in locked letter
            drawChosenLetter(positionToChange, letterToInsert)
-        }   
+    }   
 } 
     if (charactersLockedIn < charactersToLockIn) {
         if (fps > flickerAnim.cyclesBeforeOverdrive) { 
@@ -101,9 +99,14 @@ function lettersAnimation () {
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     }
+    else
+    cl('here')  // WRITE NEW CODE HERE!!!!! YAH!
 }
 
 lettersAnimation()
+// cl('here')
+// flickerAnim.phraseToDraw = "Presents"
+// lettersAnimation()
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
