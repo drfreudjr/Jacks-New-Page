@@ -102,19 +102,24 @@ function lettersAnimation () {
     else
         {
         let alpha
+        context.fillStyle = flickerAnim.darkColor
         fadeOut()  // WRITE NEW CODE HERE!!!!! YAH!
-        for (let i = 1; i < 100;++i) {
-            alpha = i/100
-            context.fillStyle = flickerAnim.darkColor
-            cl(context.fillStyle)
-        }
+        requestAnimationFrame(fadeOut)
         }
 }
 
 lettersAnimation()
 
+
+let i = 0
+
 function fadeOut (){
+    ++i
     cl('welcome to hell')
+    context.globalAlpha = i/10000
+    context.fillRect(0,0,innerWidth,innerHeight)
+    if (context.globalAlpha < 1)
+        requestAnimationFrame(fadeOut)
 }
 
 
