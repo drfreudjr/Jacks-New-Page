@@ -105,8 +105,8 @@ function lettersAnimation () {
         fadeOut()  // WRITE NEW CODE HERE!!!!! YAH!
         for (let i = 1; i < 100;++i) {
             alpha = i/100
-            cl(alpha)
-
+            context.fillStyle = flickerAnim.darkColor
+            cl(context.fillStyle)
         }
         }
 }
