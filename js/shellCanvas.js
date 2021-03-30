@@ -99,12 +99,12 @@ function lettersAnimation () {
             fps += fpsIncrementor   // basic speeding up replacement speed 
         }, 1000 / fps)
     }
-    else
+    else        // do the fadeout
         {
         let alpha
         context.fillStyle = flickerAnim.darkColor
-        fadeOut()  // WRITE NEW CODE HERE!!!!! YAH!
-        requestAnimationFrame(fadeOut)
+
+        setTimeout(fadeOut(), 1000) // WRITE NEW CODE HERE!!!!! YAH!
         }
 }
 
@@ -116,7 +116,7 @@ let i = 0
 function fadeOut (){
     ++i
     cl('welcome to hell')
-    context.globalAlpha = i/10000
+    context.globalAlpha = i/5000
     context.fillRect(0,0,innerWidth,innerHeight)
     if (context.globalAlpha < 1)
         requestAnimationFrame(fadeOut)
