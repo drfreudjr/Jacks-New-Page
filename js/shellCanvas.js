@@ -1,9 +1,12 @@
+
+
 const cl = console.log;
 // import { fontList } from './modules/fontList.js';
 // import { dynamicFontSize } from './modules/dynamicFontSize.js';
 import { flickerAnim} from './modules/flickerAnim.js' // object with flicker parameters
 import { randomCharacterString } from './modules/randomCharacterString.js' // arg = length
 import { getCenterXPosition} from './modules/getCenterXPosition.js' // gets hoizontal position for each letter
+
 
 window.onload = function () {           // onload wrapper
                                         
@@ -113,14 +116,19 @@ lettersAnimation()
 let i = 0
 
 function fadeOut (){
+    cl(context.globalAlpha)
     ++i
     context.globalAlpha = i/5000
     context.fillRect(0,0,innerWidth,innerHeight)
-    if (context.globalAlpha < 1)
+    if (context.globalAlpha < .03)  // I have no udea why this works
         requestAnimationFrame(fadeOut)
+    else {
+        context.globalAlpha = 0
+        cl('here')
+        window.location.href = '/index.html'
+    }
 }
-
-
 
 }   // end drawScreen wrapper
 }   // end onload wrapper
+
