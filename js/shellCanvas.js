@@ -120,7 +120,7 @@ function fadeOut (){
     ++i
     context.globalAlpha = i/5000
     context.fillRect(0,0,innerWidth,innerHeight)
-    if (context.globalAlpha < .03)  // I have no udea why this works
+    if (context.globalAlpha < .05)  // I have no udea why this works
         requestAnimationFrame(fadeOut)
     else {
         context.globalAlpha = 0
