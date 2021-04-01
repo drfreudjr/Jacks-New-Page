@@ -125,7 +125,7 @@ function fadeOut (){
     else {
         context.globalAlpha = 0
         cl('here')
-        window.location.href = '/index.html'
+        window.location.replace ("http://nascar.com")
     }
 }
 
